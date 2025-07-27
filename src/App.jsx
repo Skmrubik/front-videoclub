@@ -19,7 +19,7 @@ function App() {
   return (
     <>
       <ul>
-        {posts.map((item, value) => <li key={value}>{item.firstName}</li>)}
+        {posts.map((item, value) => <h2 key={value}>{item.firstName}</h2>)}
       </ul>
     </>
   )
