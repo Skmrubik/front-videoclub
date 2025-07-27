@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react'
-import { getStaffs } from './services/Staffs'
+import { getFirstNFilms } from './services/Films'
 import './App.css'
 
 function App() {
   const [posts, setPosts] = useState([]);
     
   useEffect(() => {
-    getStaffs()
+    getFirstNFilms(5)
       .then(items => {
         setPosts(items)
       })
@@ -18,8 +18,15 @@ function App() {
   
   return (
     <>
-      <ul>
-        {posts.map((item, value) => <h2 key={value}>{item.firstName}</h2>)}
+      <ul className='cuadro'>
+        {posts.map((item, value) => {
+          return(
+            <div className='film'>
+              <p key={value}>{item.title} ({item.releaseYear}) </p>
+              <p> Duración: {item.length} min</p>
+            </div>
+          );
+        })}
       </ul>
     </>
   )
