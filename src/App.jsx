@@ -6,7 +6,7 @@ import './App.css'
 
 function App() {
   const [posts, setPosts] = useState([]);
-  const [value, setValue] = useState([20, 37])
+  const [value, setValue] = useState([100, 150])
     
   useEffect(() => {
     getFilmsBetweenLength(value[0],value[1])
@@ -28,13 +28,15 @@ function App() {
   return (
     <>
       <Box sx={{ width: 300, marginTop: 5, marginLeft: 5}}>
+        <h2>Duración</h2>
         <Slider
           getAriaLabel={() => 'Temperature range'}
           value={value}
           onChange={handleChange}
           valueLabelDisplay="auto"
           getAriaValueText={valuetext}
-          max={300}
+          min={40}
+          max={190}
         />
       </Box>
       <ul className='cuadro'>
