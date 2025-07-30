@@ -28,7 +28,7 @@ function App() {
   return (
     <>
       <Box sx={{ width: 300, marginTop: 5, marginLeft: 5}}>
-        <h2>Duración</h2>
+        <p>Duración</p>
         <Slider
           getAriaLabel={() => 'Temperature range'}
           value={value}

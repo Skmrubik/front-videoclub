@@ -19,10 +19,24 @@ body {
 
 p {
   margin: 0px;
+  font-family: "Segoe UI";
 }
 
 ul {
   padding: 5px 5px 5px 5px;
+}
+.navbar{
+  width: 100px;
+}
+
+.menu {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;    
 }
 
 
