@@ -3,6 +3,8 @@ import { getFilmsBetweenLength } from './services/Films'
 import Slider from '@mui/material/Slider'
 import Box from '@mui/material/Box';
 import './App.css'
+import FilmBox from './FilmBox';  
+
 
 function App() {
   const [posts, setPosts] = useState([]);
@@ -42,10 +44,7 @@ function App() {
       <ul className='cuadro'>
         {posts.map((item, value) => {
           return(
-            <div className='film'>
-              <p key={value}>{item.title} ({item.releaseYear}) </p>
-              <p> Duración: {item.length} min</p>
-            </div>
+            <FilmBox value={value} item={item}/>
           );
         })}
       </ul>
