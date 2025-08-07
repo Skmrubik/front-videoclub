@@ -18,12 +18,14 @@ function FilmBox({value, item}) {
     }
     return (
         <div className='film' onClick={() => setAbrirDesplegable(!abrirDesplegable)}>
-          <p className='title' key={value}>{item.title} </p>
+          <p className='title' key={value}>{item.film_id.title} </p>
           {abrirDesplegable && (
             <div className='desplegable'>
-              {propertyFilm("Duración:", item.length + " min")}
-              {propertyFilm("Descripcion:", item.description)}
-              {propertyFilm("Precio:", item.replacementCost + " €")}
+              {propertyFilm("Descripción:", item.film_id.description)}
+              {propertyFilm("Duración:", item.film_id.length + " min")}
+              {propertyFilm("Puntuación:", item.film_id.rentalRate)}
+              {propertyFilm("Categoría:", item.categoryId.name)}
+              {propertyFilm("Precio:", item.film_id.replacementCost + " €")}
             </div>
           )}
         </div>
