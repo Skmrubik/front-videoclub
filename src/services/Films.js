@@ -13,3 +13,8 @@ export function getFilmsWithCategories() {
         .then((response) => response.json())
 }
 
+export function getActorsOfFilm(idFilm) {
+    return fetch('http://localhost:8080/listActorsOfFilms?idFilm='+idFilm)
+        .then((response) => response.json())
+}
+

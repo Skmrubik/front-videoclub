@@ -30,6 +30,7 @@ const categories = [
 ]
 
 function App() {
+  const [activeIndex, setActiveIndex] = useState(null);
   const [posts, setPosts] = useState([]);
   const [value, setValue] = useState([100, 150])
   const [category, setCategory] = useState([0]);
@@ -93,7 +94,7 @@ function App() {
       <ul className='cuadro'>
         {posts.map((item, value) => {
           return(
-            <FilmBox value={value} item={item}/>
+            <FilmBox key={value} item={item} abrirDesplegable={activeIndex === value} onShow={()=> setActiveIndex(value)}/>
           );
         })}
       </ul>
