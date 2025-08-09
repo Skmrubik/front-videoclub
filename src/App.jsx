@@ -9,26 +9,10 @@ import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import NativeSelect from '@mui/material/NativeSelect';
 import Select from 'react-select';
+import {categories} from './constant/categories.js'; // Assuming categories are stored in a JSON file
 
-const categories = [
-  { value: '0', label: 'None' },
-  { value: '1', label: 'Action' },
-  { value: '2', label: 'Animation' },
-  { value: '3', label: 'Children' },
-  { value: '4', label: 'Classics' },
-  { value: '5', label: 'Comedy' },
-  { value: '6', label: 'Documentary' },
-  { value: '7', label: 'Drama' },
-  { value: '8', label: 'Family' },
-  { value: '9', label: 'Foreign' },
-  { value: '10', label: 'Games' },
-  { value: '11', label: 'Horror' },
-  { value: '12', label: 'Music' },
-  { value: '13', label: 'New' },
-  { value: '14', label: 'Sci-Fi' },
-  { value: '15', label: 'Sports' },
-  { value: '16', label: 'Travel' }
-]
+const styleBox = { width: 200, height: 70, marginTop: '5px', marginLeft: '20px', border: '1px solid grey', borderRadius: '5px', padding: '10px' }
+const styleTitleFilter = {marginBottom: '10px', fontSize: 18}
 
 function App() {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -73,9 +57,9 @@ function App() {
 
   return (
     <>
-      <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-        <Box sx={{ width: 200, marginTop: '5px', marginLeft: '20px' }}>
-          <p>Duración</p>
+      <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: '20px' }}>
+        <Box sx={styleBox}>
+          <p style={styleTitleFilter}>Duración</p>
           <Slider
             getAriaLabel={() => 'Temperature range'}
             value={value}
@@ -87,11 +71,11 @@ function App() {
             max={190}
           />
         </Box>
-        <Box sx={{ width: 200, marginTop: '5px', marginLeft: '20px' }}>
+        <Box sx={styleBox}>
           <FormControl fullWidth color={"black"}>
-            <InputLabel variant="standard" htmlFor="uncontrolled-native">
+            <p style={styleTitleFilter}>
               Categoría
-            </InputLabel>
+            </p>
             <NativeSelect
               value={category}
               onChange={(e) => {
@@ -105,11 +89,13 @@ function App() {
             </NativeSelect>
           </FormControl>
         </Box>
-        <Box sx={{ width: 200, marginTop: '5px', marginLeft: '20px' }}>
+        <Box sx={{...styleBox, ...{fontFamily: 'Segoe UI'}}}>
+          <p style={styleTitleFilter}>Actor</p>
           <Select
-            aria-labelledby="aria-label"
-            inputId="aria-example-input"
-            name="aria-live-color"
+            style={{ color: 'black' }}
+            aria-labelledby="Segoe UI"
+            inputId="Segoe UI"
+            name="Segoe UI"
             onMenuOpen={onMenuOpen}
             onMenuClose={onMenuClose}
             defaultValue={0}
