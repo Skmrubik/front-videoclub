@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { getFilmsBetweenLength } from './services/Films'
+import { getActors } from './services/Actors'
 import Slider from '@mui/material/Slider'
 import Box from '@mui/material/Box';
 import './App.css'
 import FilmBox from './FilmBox';
 import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import NativeSelect from '@mui/material/NativeSelect';
+import Select from 'react-select';
 
 const categories = [
   { value: '0', label: 'None' },
@@ -33,29 +34,47 @@ function App() {
   const [activeIndex, setActiveIndex] = useState(null);
   const [posts, setPosts] = useState([]);
   const [value, setValue] = useState([100, 150])
-  const [category, setCategory] = useState([0]);
-    
+  const [category, setCategory] = useState(0);
+  const [actors, setActors] = useState([]);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [selectedOption, setSelectedOption] = useState("");
+
   useEffect(() => {
-    getFilmsBetweenLength(value[0], value[1], category)
+    getFilmsBetweenLength(value[0], value[1], category, selectedOption.value)
       .then(items => {
         setPosts(items)
       })
       .catch((err) => {
         console.log(err.message);
       });
-    }, [value, category]
+  }, [value, category, selectedOption]
   );
-  
+
+  useEffect(() => {
+    getActors()
+      .then(items => {
+        setActors(items)
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }, []);
+
   const valuetext = (value) => {
     return `${value}°C`;
   }
   const handleChange = (e, newValue) => {
     setValue(newValue);
+    setActiveIndex(null);
   };
+
+  const onMenuOpen = () => setIsMenuOpen(true);
+  const onMenuClose = () => setIsMenuOpen(false);
+
   return (
     <>
       <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-        <Box sx={{ width: 200, marginTop: '5px', marginLeft: '20px'}}>
+        <Box sx={{ width: 200, marginTop: '5px', marginLeft: '20px' }}>
           <p>Duración</p>
           <Slider
             getAriaLabel={() => 'Temperature range'}
@@ -71,16 +90,13 @@ function App() {
         <Box sx={{ width: 200, marginTop: '5px', marginLeft: '20px' }}>
           <FormControl fullWidth color={"black"}>
             <InputLabel variant="standard" htmlFor="uncontrolled-native">
-              Age
+              Categoría
             </InputLabel>
             <NativeSelect
               value={category}
               onChange={(e) => {
                 setCategory(e.target.value);
-              }}
-              inputProps={{
-                name: 'age',
-                id: 'uncontrolled-native',
+                setActiveIndex(null);
               }}
             >
               {categories.map((cat) => (
@@ -89,12 +105,24 @@ function App() {
             </NativeSelect>
           </FormControl>
         </Box>
+        <Box sx={{ width: 200, marginTop: '5px', marginLeft: '20px' }}>
+          <Select
+            aria-labelledby="aria-label"
+            inputId="aria-example-input"
+            name="aria-live-color"
+            onMenuOpen={onMenuOpen}
+            onMenuClose={onMenuClose}
+            value={selectedOption}
+            onChange={setSelectedOption}
+            options={actors}
+          />
+        </Box>
       </div>
-      
+
       <ul className='cuadro'>
         {posts.map((item, value) => {
-          return(
-            <FilmBox key={value} item={item} abrirDesplegable={activeIndex === value} onShow={()=> setActiveIndex(value)}/>
+          return (
+            <FilmBox key={value} item={item} abrirDesplegable={activeIndex === value} onShow={() => setActiveIndex(value)} funcionActivar={setActiveIndex} />
           );
         })}
       </ul>
