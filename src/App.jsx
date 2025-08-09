@@ -40,7 +40,7 @@ function App() {
   const [selectedOption, setSelectedOption] = useState("");
 
   useEffect(() => {
-    getFilmsBetweenLength(value[0], value[1], category, selectedOption.value)
+    getFilmsBetweenLength(value[0], value[1], category, selectedOption.value === undefined? "": selectedOption.value)
       .then(items => {
         setPosts(items)
       })
@@ -112,6 +112,7 @@ function App() {
             name="aria-live-color"
             onMenuOpen={onMenuOpen}
             onMenuClose={onMenuClose}
+            defaultValue={0}
             value={selectedOption}
             onChange={setSelectedOption}
             options={actors}
