@@ -3,8 +3,8 @@ export function getFirstNFilms(tam) {
         .then((response) => response.json())
 }
 
-export function getFilmsBetweenLength(min, max, category, actorId) {
-    return fetch('http://localhost:8080/listFilmsFilter?minDuration='+min+'&maxDuration='+max+'&category='+category+'&actorId='+actorId)
+export function getFilmsBetweenLength(min, max, category, actorId, page) {
+    return fetch('http://localhost:8080/listFilmsFilter?minDuration='+min+'&maxDuration='+max+'&category='+category+'&actorId='+actorId+'&page='+page)
         .then((response) => response.json())
 }
 

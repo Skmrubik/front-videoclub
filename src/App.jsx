@@ -22,16 +22,20 @@ function App() {
   const [actors, setActors] = useState([]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("");
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
 
   useEffect(() => {
-    getFilmsBetweenLength(value[0], value[1], category, selectedOption.value === undefined? "": selectedOption.value)
+    getFilmsBetweenLength(value[0], value[1], category, selectedOption.value === undefined? "": selectedOption.value, page)
       .then(items => {
-        setPosts(items)
+        setPosts(items["listFilmPage"])
+        setPage(items["currentPage"])
+        setTotalPages(items["totalPage"])
       })
       .catch((err) => {
         console.log(err.message);
       });
-  }, [value, category, selectedOption]
+  }, [value, category, selectedOption, page]
   );
 
   useEffect(() => {
@@ -113,6 +117,9 @@ function App() {
           );
         })}
       </ul>
+      <button onClick={() => setPage(page-1)} disabled={page <= 1} style={{ fontFamily: 'Segoe UI', margin: '10px', padding: '5px 10px', backgroundColor: '#f0f0f0', border: '1px solid #ccc', borderRadius: '5px' }}>Anterior</button>
+      <span style={{ margin: '10px', fontSize: '16px', fontFamily: 'Segoe UI' }}>Página {page} de {totalPages}</span>
+      <button onClick={() => setPage(page+1)} disabled={page == totalPages} style={{ fontFamily: 'Segoe UI', margin: '10px', padding: '5px 10px', backgroundColor: '#f0f0f0', border: '1px solid #ccc', borderRadius: '5px' }}>Siguiente</button>
     </>
   )
 }
