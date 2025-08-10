@@ -24,6 +24,7 @@ function App() {
   const [selectedOption, setSelectedOption] = useState("");
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     getFilmsBetweenLength(value[0], value[1], category, selectedOption.value === undefined? "": selectedOption.value, page)
@@ -31,6 +32,7 @@ function App() {
         setPosts(items["listFilmPage"])
         setPage(items["currentPage"])
         setTotalPages(items["totalPage"])
+        setIsLoading(false);
       })
       .catch((err) => {
         console.log(err.message);
@@ -58,6 +60,10 @@ function App() {
 
   const onMenuOpen = () => setIsMenuOpen(true);
   const onMenuClose = () => setIsMenuOpen(false);
+
+  if (isLoading) {
+    return <div>Cargando... 🌀</div>;
+  }
 
   return (
     <>
@@ -111,7 +117,8 @@ function App() {
       </div>
 
       <ul className='cuadro'>
-        {posts.map((item, value) => {
+        {posts.length === 0 && <p style={{ textAlign: 'center', fontFamily: 'Segoe UI' }}>No se encontraron películas</p>}
+        {posts.length !== 0 && posts.map((item, value) => {
           return (
             <FilmBox key={value} item={item} abrirDesplegable={activeIndex === value} onShow={() => setActiveIndex(value)} funcionActivar={setActiveIndex} />
           );
