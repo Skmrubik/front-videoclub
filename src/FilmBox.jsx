@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { getActorsOfFilm } from './services/Films'
+import { insertCustomer } from './services/Customers'
 import './App.css'
 
 function FilmBox({ value, item, abrirDesplegable, onShow, funcionActivar }) {
@@ -18,6 +19,13 @@ function FilmBox({ value, item, abrirDesplegable, onShow, funcionActivar }) {
       .catch((err) => {
         console.log(err.message);
       });
+    insertCustomer()
+      .then(response => { 
+        console.log("Cliente insertado:", response);
+      })
+      .catch((err) => {  
+        console.log(err.message); 
+      });     
   };
 
   const propertyFilm = (descripcion, valor) => {
