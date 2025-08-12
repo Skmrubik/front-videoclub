@@ -1,8 +1,22 @@
 import { useForm } from "react-hook-form";
 import { insertCustomer } from './services/Customers.js'
+import { getCountries } from './services/Countries.js'
+import { getCitiesByCountry } from './services/Cities.js'
+import React, { useState, useEffect } from 'react'
+import Select from 'react-select';
 // ...existing code...
+const actors = [
+  { value: 1, label: "Actor 1" },
+  { value: 2, label: "Actor 2" },
+  { value: 3, label: "Actor 3" }
+];
 function Customers() {
   const { register, handleSubmit, formState: { errors } } = useForm();
+  const [countries, setCountries] = useState([]);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [cities, setCities] = useState([]);
+  const [selectedOption, setSelectedOption] = useState("");
+
   const onSubmit = (data) => {
     const customer = {
                 firstName: data.name,
@@ -13,7 +27,7 @@ function Customers() {
                     address2: data.direccion2,
                     district: data.distrito,
                     cityId: {
-                        city_id: 424
+                        city_id: data.ciudad
                     },
                     postalCode: data.codigoPostal,
                     phone: data.telefono,
@@ -28,6 +42,32 @@ function Customers() {
       });
   };
 
+  useEffect(() => {
+    getCountries()
+      .then(items => {
+        setCountries(items)
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }, []);
+
+  useEffect(() => {
+    if (selectedOption != undefined && selectedOption.value != undefined) {
+      getCitiesByCountry(selectedOption.value) 
+      .then(items => {
+        setCities(items)
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+    }
+    
+  }, [selectedOption]);
+
+
+  const onMenuOpen = () => setIsMenuOpen(true);
+  const onMenuClose = () => setIsMenuOpen(false);
   /*
   This component renders a form for customer input.{
             method: 'POST',
@@ -92,6 +132,32 @@ function Customers() {
             <input 
               {...register('direccion2')} 
             />
+          </div>
+          <div className="form-input"> 
+            <p className="form-label">Pais</p>
+            <div style={{ padding: '0px 10px 10px 10px', fontFamily: 'Segoe UI'}}>
+              <Select
+                style={{ color: 'black', padding: 10}}
+                aria-labelledby="Segoe UI"
+                inputId="Segoe UI"
+                name="Segoe UI"
+                onMenuOpen={onMenuOpen}
+                onMenuClose={onMenuClose}
+                defaultValue={0}
+                value={selectedOption}
+                onChange={setSelectedOption}
+                options={countries}
+              />
+            </div>
+          </div>
+          <div className="form-input"> 
+            <p className="form-label">Ciudad</p>
+            <select className="selectCity" placeholder={selectedOption== ""?"Selecciona pais": ""} disabled={selectedOption==""? true: false} 
+            {...register("ciudad", { required: 'Ciudad es obligatoria' })}>
+              {cities.map((city) => (
+                <option key={city.value} value={city.value}>{city.label}</option>
+              ))}
+            </select>
           </div>
           <div className="form-input"> 
             <p className="form-label">Distrito</p>
