@@ -8,7 +8,7 @@ createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <div className="menu" >
       <div className="navbar" >
-        <NavLink to="/"
+        <NavLink to="/films"
                     style={({ isActive }) => ({
                         color: isActive? "black": "#595959",
                         fontWeight: "bold",
@@ -16,11 +16,11 @@ createRoot(document.getElementById('root')).render(
                         fontSize: "20px",
                         textDecoration: "none",
                         marginRight: "15px",
-                    })}>Home
+                    })}>Peliculas
         </NavLink>
       </div>
       <div className="navbar" >
-        <NavLink to="/about"
+        <NavLink to="/customers"
                   style={({ isActive }) => ({
                       color: isActive? "black": "#595959",
                       fontWeight: "bold",
@@ -28,13 +28,13 @@ createRoot(document.getElementById('root')).render(
                       fontSize: "20px",
                       textDecoration: "none",
                       marginRight: "15px",
-                  })}>About
+                  })}>Clientes
         </NavLink>
       </div>
     </div>
     <Routes>
-      <Route path="/" element={<App />} />
-      <Route path="/about" element={<AppNav />} />
+      <Route path="/films" element={<App />} />
+      <Route path="/customers" element={<AppNav />} />
     </Routes>
   </BrowserRouter>
 )
