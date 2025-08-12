@@ -9,11 +9,11 @@ body {
   display: block;
 }
 .film {
-  background-color: #d9d9d9;
+  background-color:  #ffc299;
   margin-bottom: 5px;
   padding: 5px;
   border-radius: 5px;
-  border: 1px solid #808080;
+  border: 1px solid #ff944d;
   font-weight: 600;
   text-align: center;
 }
@@ -26,7 +26,6 @@ body {
 .propiedad-valor {
   font-weight: 400;
   color: #333;
-  margin-left: 5px;
 }
 
 .propiedad {
@@ -58,11 +57,75 @@ ul {
 }
 
 .desplegable {
-  background-color: #f0f0f0;
-  padding: 10px;
+  background-color: #ffe0cc;
+  padding: 5px;
   border-radius: 5px;
-  border: 1px solid black;
   margin-top: 5px;
 }
 
+
+p {
+  margin: 0;
+  padding: 5px;
+  font-size: 14px;
+}
+
+input {
+  padding: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: #595959 !important;
+}
+
+.customers{
+  display: flex;
+  justify-content: center;
+}
+
+.form-container {
+  width: 700px;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  justify-content: center !important;
+  padding-top: 30px;
+  gap: 10px 20px; /* row-gap column gap */
+  row-gap: 10px;
+  column-gap: 10px;
+  flex-flow: row wrap;
+}
+
+.form-label {
+  font-weight: 500;
+  font-size: 14px;
+  display: block;
+
+}
+.form-input {
+  width: 200px;
+  margin-right: 0px;
+  margin-bottom: 10px;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
+.boton-guardar-cliente {
+  width: 200px;
+  height: 40px;
+  background-color: #4CAF50;
+  margin-top: 10px;
+  color: white;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 5px;
+  box-shadow: 2px 2px 0px 1px #008000;
+  cursor: pointer;
+}
+
+.error{
+  font-size: 11px;
+  color: red;
+  margin-top: 5px;
+}
 

@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from 'react'
-import { getFilmsBetweenLength } from './services/Films'
-import { getActors } from './services/Actors'
+import { getFilmsBetweenLength } from './services/Films.js'
+import { getActors } from './services/Actors.js'
 import Slider from '@mui/material/Slider'
 import Box from '@mui/material/Box';
 import './App.css'
-import FilmBox from './FilmBox';
+import FilmBox from './FilmBox.jsx';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import NativeSelect from '@mui/material/NativeSelect';
 import Select from 'react-select';
 import {categories} from './constant/categories.js'; // Assuming categories are stored in a JSON file
+import { set } from 'react-hook-form';
 
-const styleBox = { width: 200, height: 70, marginTop: '5px', marginLeft: '20px', border: '1px solid grey', borderRadius: '5px', padding: '10px' }
-const styleTitleFilter = {marginBottom: '10px', fontSize: 18}
+const styleBox = { width: 200, height: 70, marginTop: '5px', marginLeft: '20px', boxShadow: '2px 2px 2px 1px rgba(0, 0, 0, 0.2)', borderRadius: '5px', padding: '10px' }
+const styleTitleFilter = { fontSize: 18}
 
-function App() {
+function Films() {
   const [activeIndex, setActiveIndex] = useState(null);
   const [posts, setPosts] = useState([]);
   const [value, setValue] = useState([100, 150])
@@ -23,6 +24,7 @@ function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("");
   const [page, setPage] = useState(1);
+  const [showPage, setShowPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -33,6 +35,7 @@ function App() {
         setPage(items["currentPage"])
         setTotalPages(items["totalPage"])
         setIsLoading(false);
+        setShowPage(page);
       })
       .catch((err) => {
         console.log(err.message);
@@ -63,8 +66,8 @@ function App() {
 
   if (isLoading) {
     return <div>Cargando... 🌀</div>;
-  }
-
+  } 
+  
   return (
     <>
       <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: '20px' }}>
@@ -125,10 +128,10 @@ function App() {
         })}
       </ul>
       <button onClick={() => setPage(page-1)} disabled={page <= 1} style={{ fontFamily: 'Segoe UI', margin: '10px', padding: '5px 10px', backgroundColor: '#f0f0f0', border: '1px solid #ccc', borderRadius: '5px' }}>Anterior</button>
-      <span style={{ margin: '10px', fontSize: '16px', fontFamily: 'Segoe UI' }}>Página {page} de {totalPages}</span>
+      <span style={{ margin: '10px', fontSize: '16px', fontFamily: 'Segoe UI' }}>Página {showPage} de {totalPages}</span>
       <button onClick={() => setPage(page+1)} disabled={page == totalPages} style={{ fontFamily: 'Segoe UI', margin: '10px', padding: '5px 10px', backgroundColor: '#f0f0f0', border: '1px solid #ccc', borderRadius: '5px' }}>Siguiente</button>
     </>
   )
 }
 
-export default App
+export default Films

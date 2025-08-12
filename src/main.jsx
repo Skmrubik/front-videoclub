@@ -1,8 +1,8 @@
 import { createRoot } from 'react-dom/client'
 import { NavLink, BrowserRouter, Routes, Route} from "react-router-dom";
 import './index.css'
-import App from './App.jsx'
-import AppNav from './AppNav.jsx';
+import Films from './Films.jsx'
+import Customers from './Customers.jsx';
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
@@ -33,8 +33,8 @@ createRoot(document.getElementById('root')).render(
       </div>
     </div>
     <Routes>
-      <Route path="/films" element={<App />} />
-      <Route path="/customers" element={<AppNav />} />
+      <Route path="/films" element={<Films />} />
+      <Route path="/customers" element={<Customers />} />
     </Routes>
   </BrowserRouter>
 )
