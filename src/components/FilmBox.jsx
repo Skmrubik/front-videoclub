@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { getActorsOfFilm } from './services/Films'
-import { insertCustomer } from './services/Customers'
-import './App.css'
+import { getActorsOfFilm } from '../services/Films'
+import { insertCustomer } from '../services/Customers'
 
 function FilmBox({ value, item, abrirDesplegable, onShow, funcionActivar }) {
 

@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
-import { insertCustomer } from './services/Customers.js'
-import { getCountries } from './services/Countries.js'
-import { getCitiesByCountry } from './services/Cities.js'
+import { insertCustomer } from '../services/Customers.js'
+import { getCountries } from '../services/Countries.js'
+import { getCitiesByCountry } from '../services/Cities.js'
 import React, { useState, useEffect } from 'react'
 import Select from 'react-select';
 // ...existing code...
@@ -102,7 +102,10 @@ function Customers() {
     <div className="customers">
       
       <form onSubmit={handleSubmit(onSubmit)}>
-        <p style={{marginTop: 40, fontSize: 15}}>Introduce los datos de un nuevo cliente</p>
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
+          <p style={{marginTop: 40, fontSize: 15}}>Introduce los datos de un nuevo cliente</p>
+        </div>
+        
         <div className="form-container">
           <div className="form-input"> 
             <p className="form-label">Nombre*</p>
@@ -211,8 +214,10 @@ function Customers() {
           {errors.codigoPostal && <p className="error">{errors.codigoPostal.message}</p>}
           {errors.telefono && <p className="error">{errors.telefono.message}</p>}
         </div>
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
+          <button type="submit" className="boton-guardar-cliente">Guardar</button>
+        </div>
         
-        <button type="submit" className="boton-guardar-cliente">Guardar</button>
       </form>
     </div>
   );

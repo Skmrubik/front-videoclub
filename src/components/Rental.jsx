@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import {getCustomerById} from './services/Customers.js';
+import {getCustomerById} from '../services/Customers.js';
 import { set } from 'react-hook-form';
 const Rental = ({key, item, abrirDesplegable, onShow, funcionActivar, deleteRental}) => {
 

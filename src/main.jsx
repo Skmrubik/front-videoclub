@@ -1,9 +1,9 @@
 import { createRoot } from 'react-dom/client'
 import { NavLink, BrowserRouter, Routes, Route} from "react-router-dom";
 import './index.css'
-import Films from './Films.jsx'
-import Customers from './Customers.jsx';
-import Rentals from './Rentals.jsx'
+import Films from './views/Films.jsx'
+import Customers from './views/Customers.jsx';
+import Rentals from './views/Rentals.jsx'
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>

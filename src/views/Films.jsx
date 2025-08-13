@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import { getFilmsBetweenLength } from './services/Films.js'
-import { getActors } from './services/Actors.js'
+import { getFilmsBetweenLength } from '../services/Films.js'
+import { getActors } from '../services/Actors.js'
 import Slider from '@mui/material/Slider'
 import Box from '@mui/material/Box';
-import './App.css'
-import FilmBox from './FilmBox.jsx';
-import InputLabel from '@mui/material/InputLabel';
+import FilmBox from '../components/FilmBox.jsx';
 import FormControl from '@mui/material/FormControl';
 import NativeSelect from '@mui/material/NativeSelect';
 import Select from 'react-select';
-import {categories} from './constant/categories.js'; // Assuming categories are stored in a JSON file
-import { set } from 'react-hook-form';
+import {categories} from '../constant/categories.js'; // Assuming categories are stored in a JSON file
 
 const styleBox = { width: 200, height: 70, marginTop: '5px', marginLeft: '20px', boxShadow: '2px 2px 2px 1px rgba(0, 0, 0, 0.2)', borderRadius: '5px', padding: '10px' }
 const styleTitleFilter = { fontSize: 18}
@@ -127,9 +124,12 @@ function Films() {
           );
         })}
       </ul>
-      <button onClick={() => setPage(page-1)} disabled={page <= 1} style={{ fontFamily: 'Segoe UI', margin: '10px', padding: '5px 10px', backgroundColor: '#f0f0f0', border: '1px solid #ccc', borderRadius: '5px' }}>Anterior</button>
-      <span style={{ margin: '10px', fontSize: '16px', fontFamily: 'Segoe UI' }}>Página {showPage} de {totalPages}</span>
-      <button onClick={() => setPage(page+1)} disabled={page == totalPages} style={{ fontFamily: 'Segoe UI', margin: '10px', padding: '5px 10px', backgroundColor: '#f0f0f0', border: '1px solid #ccc', borderRadius: '5px' }}>Siguiente</button>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+        <button onClick={() => setPage(page-1)} disabled={page <= 1} style={{ fontFamily: 'Segoe UI', margin: '10px', padding: '5px 10px', backgroundColor: '#f0f0f0', border: '1px solid #ccc', borderRadius: '5px' }}>Anterior</button>
+        <span style={{ margin: '10px', fontSize: '16px', fontFamily: 'Segoe UI' }}>Página {showPage} de {totalPages}</span>
+        <button onClick={() => setPage(page+1)} disabled={page == totalPages} style={{ fontFamily: 'Segoe UI', margin: '10px', padding: '5px 10px', backgroundColor: '#f0f0f0', border: '1px solid #ccc', borderRadius: '5px' }}>Siguiente</button>
+      </div>
+      
     </>
   )
 }

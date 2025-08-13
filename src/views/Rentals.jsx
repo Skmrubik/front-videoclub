@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { getRentalsPending, getRentalsPendingByCustomer, deleteRentalById } from './services/Rentals.js'
-import Rental from './Rental.jsx';
-import {getCustomersFormatted} from './services/Customers.js';
+import { getRentalsPending, getRentalsPendingByCustomer, deleteRentalById } from '../services/Rentals.js';
+import Rental from '../components/Rental.jsx';
+import {getCustomersFormatted} from '../services/Customers.js';
 import Select from 'react-select';
 import Box from '@mui/material/Box';
 
