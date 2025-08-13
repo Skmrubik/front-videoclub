@@ -1,13 +1,21 @@
 import React, { useState, useEffect } from 'react'
-import { getRentalsPending } from './services/Rentals.js'
+import { getRentalsPending, getRentalsPendingByCustomer } from './services/Rentals.js'
 import Rental from './Rental.jsx';
-
+import {getCustomersFormatted} from './services/Customers.js';
+import Select from 'react-select';
+import Box from '@mui/material/Box';
 
 function Rentals() {
     const [rentals, setRentals] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [activeIndex, setActiveIndex] = useState(null);
-    
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [selectedOption, setSelectedOption] = useState("");
+    const [customers, setCustomers] = useState([]);
+
+    const styleBox = { width: 200, height: 70, marginTop: '5px', marginLeft: '20px', boxShadow: '2px 2px 2px 1px rgba(0, 0, 0, 0.2)', borderRadius: '5px', padding: '10px' }
+    const styleTitleFilter = { fontSize: 18}
+
     useEffect(() => {
         // Fetch rentals data from an API or service
         getRentalsPending()
@@ -19,25 +27,68 @@ function Rentals() {
             console.error('Error fetching rentals:', error);
             setIsLoading(false);
         });
+        getCustomersFormatted()
+        .then(data => {
+            setCustomers(data);
+        })
+        .catch(error => {
+            console.error('Error fetching rentals:', error);
+        });
     }, []);
     
+    useEffect(() => {
+        // Fetch rentals data from an API or service
+        getRentalsPendingByCustomer(selectedOption.value === undefined? "": selectedOption.value)
+        .then(data => {
+            setRentals(data);
+            setIsLoading(false);
+        })
+        .catch(error => {
+            console.error('Error fetching rentals:', error);
+            setIsLoading(false);
+        });
+    }, [selectedOption]);
+
+    const onMenuOpen = () => setIsMenuOpen(true);
+    const onMenuClose = () => setIsMenuOpen(false);
+
     if (isLoading) {
         return <div>Loading...</div>;
     }
     
     return (
-        <div>
-            <div className='rental-headers'>
-                <p className='header-title'>Película</p>
-                <p className='header-date'>Fecha de Alquiler</p>
-                <p className='header-first-name'>Nombre</p>
-                <p className='header-last-name'>Apellidos</p>
+        <>
+            <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: '20px' }}>
+                <Box sx={{...styleBox, ...{fontFamily: 'Segoe UI'}}}>
+                    <p style={styleTitleFilter}>Filtro cliente</p>
+                    <Select
+                        style={{ color: 'black' }}
+                        aria-labelledby="Segoe UI"
+                        inputId="Segoe UI"
+                        name="Segoe UI"
+                        onMenuOpen={onMenuOpen}
+                        onMenuClose={onMenuClose}
+                        defaultValue={0}
+                        value={selectedOption}
+                        onChange={setSelectedOption}
+                        options={customers}
+                    />
+                </Box>
             </div>
-            {rentals.map(rental => (
-                <Rental key={rental.rental_id} item={rental} abrirDesplegable={activeIndex === rental.rental_id} 
-                        onShow={() => setActiveIndex(rental.rental_id)} funcionActivar={setActiveIndex}/>
-            ))}
-        </div>
+            <div>
+                <div className='rental-headers'>
+                    <p className='header-title'>Película</p>
+                    <p className='header-date'>Fecha de Alquiler</p>
+                    <p className='header-first-name'>Nombre</p>
+                    <p className='header-last-name'>Apellidos</p>
+                </div>
+                {rentals.length === 0 && <p style={{ textAlign: 'center', fontFamily: 'Segoe UI' }}>No se encontraron películas alquiladas</p>}
+                {rentals.length !== 0 && rentals.map(rental => (
+                    <Rental key={rental.rental_id} item={rental} abrirDesplegable={activeIndex === rental.rental_id} 
+                            onShow={() => setActiveIndex(rental.rental_id)} funcionActivar={setActiveIndex}/>
+                ))}
+            </div>
+        </>
     );
 }
 export default Rentals;
