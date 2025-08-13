@@ -10,3 +10,8 @@ export function insertCustomer(customer) {
     )
     .then((response) => response.json())
 }
+
+export function getCustomerById(customerId) {
+    return fetch('http://localhost:8080/getCustomerById?idCustomer='+ customerId)
+        .then((response) => response.json())
+}

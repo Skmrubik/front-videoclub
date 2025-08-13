@@ -43,7 +43,7 @@ ul {
   padding: 5px 5px 5px 5px;
 }
 .navbar{
-  width: 100px;
+  width: 140px;
 }
 
 .menu {
@@ -152,4 +152,73 @@ input {
   font-size: 14px;
   border-color: #ccc;
   
+}
+
+.rental-item {
+  background-color:  #ffc299;
+  margin: 5px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ff944d;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.rental-item-priority-values {
+  display: flex;
+  flex-direction: row;
+}
+.rental-title {
+  width: 300px;
+  text-align: left;
+}
+.rental-date {
+  width: 250px;
+  text-align: left;
+}
+.rental-first-name {
+  width: 150px;
+  text-align: left;
+} 
+.rental-last-name {
+  width: 300px;
+  text-align: left;
+}
+
+.rental-headers {
+  display: flex;
+  flex-direction: row;
+  font-weight: bold;
+  padding: 10px;
+}
+
+.header-title {
+  width: 300px;
+  text-align: left;
+  margin-left: 5px;
+}
+.header-date {
+  width: 250px;
+  text-align: left;
+}
+.header-first-name {
+  width: 150px;
+  text-align: left;
+} 
+.header-last-name {
+  width: 300px;
+  text-align: left;
+}
+
+.rental-desplegable {
+  display: block;
+  background-color: #ffe0cc;
+  padding: 5px;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+.label-property-customer {
+  font-weight: 500;
 }
