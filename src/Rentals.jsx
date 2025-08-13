@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { getRentalsPending, getRentalsPendingByCustomer } from './services/Rentals.js'
+import { getRentalsPending, getRentalsPendingByCustomer, deleteRentalById } from './services/Rentals.js'
 import Rental from './Rental.jsx';
 import {getCustomersFormatted} from './services/Customers.js';
 import Select from 'react-select';
@@ -12,6 +12,7 @@ function Rentals() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState("");
     const [customers, setCustomers] = useState([]);
+    const [loadRentals, setLoadRentals] = useState(false);
 
     const styleBox = { width: 200, height: 70, marginTop: '5px', marginLeft: '20px', boxShadow: '2px 2px 2px 1px rgba(0, 0, 0, 0.2)', borderRadius: '5px', padding: '10px' }
     const styleTitleFilter = { fontSize: 18}
@@ -49,6 +50,32 @@ function Rentals() {
         });
     }, [selectedOption]);
 
+    useEffect(() => {
+        // Fetch rentals data from an API or service
+        getRentalsPending()
+        .then(data => {
+            setRentals(data);
+            setIsLoading(false);
+        })
+        .catch(error => {
+            console.error('Error fetching rentals:', error);
+            setIsLoading(false);
+        });
+    }, [loadRentals]);
+
+    const deleteRental = (e,rentalId) => {
+        window.confirm("¿Seguro que quieres borrar este alquiler?"); 
+        deleteRentalById(rentalId)
+            .then(() => {
+                console.log("Alquiler borrado correctamente");
+                setLoadRentals(loadRentals => !loadRentals);
+            })
+            .catch((err) => {
+                console.log("Fallo al borrar", err.message);
+            });  
+        e.stopPropagation(); 
+    }
+
     const onMenuOpen = () => setIsMenuOpen(true);
     const onMenuClose = () => setIsMenuOpen(false);
 
@@ -85,7 +112,7 @@ function Rentals() {
                 {rentals.length === 0 && <p style={{ textAlign: 'center', fontFamily: 'Segoe UI' }}>No se encontraron películas alquiladas</p>}
                 {rentals.length !== 0 && rentals.map(rental => (
                     <Rental key={rental.rental_id} item={rental} abrirDesplegable={activeIndex === rental.rental_id} 
-                            onShow={() => setActiveIndex(rental.rental_id)} funcionActivar={setActiveIndex}/>
+                            onShow={() => setActiveIndex(rental.rental_id)} funcionActivar={setActiveIndex} deleteRental={(e) => deleteRental(e,rental.rental_id)}/>
                 ))}
             </div>
         </>

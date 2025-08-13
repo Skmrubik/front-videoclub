@@ -1,6 +1,7 @@
 #root {
   padding: 0px !important;
 }
+
 .cuadro {
   width: auto;
 }
@@ -9,7 +10,7 @@ body {
   display: block;
 }
 .film {
-  background-color:  #ffc299;
+  background-color:  #ffe6cc;
   margin-bottom: 5px;
   padding: 5px;
   border-radius: 5px;
@@ -57,7 +58,7 @@ ul {
 }
 
 .desplegable {
-  background-color: #ffe0cc;
+  background-color: #ffcc99;
   padding: 5px;
   border-radius: 5px;
   margin-top: 5px;
@@ -155,7 +156,7 @@ input {
 }
 
 .rental-item {
-  background-color:  #ffc299;
+  background-color:  #ffe6cc;
   margin: 5px;
   padding: 5px;
   border-radius: 5px;
@@ -213,7 +214,7 @@ input {
 
 .rental-desplegable {
   display: block;
-  background-color: #ffe0cc;
+  background-color: #ffcc99;
   padding: 5px;
   border-radius: 5px;
   margin-top: 5px;
@@ -221,4 +222,21 @@ input {
 
 .label-property-customer {
   font-weight: 500;
+}
+
+.rental-div-delete{
+  display: flex;
+  justify-content: flex-end;
+  flex-grow: 1;
+}
+
+.rental-button {
+  background-color: red !important;
+  width: fit-content;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
 }

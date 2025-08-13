@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import {getCustomerById} from './services/Customers.js';
 import { set } from 'react-hook-form';
-const Rental = ({key, item, abrirDesplegable, onShow, funcionActivar  }) => {
+const Rental = ({key, item, abrirDesplegable, onShow, funcionActivar, deleteRental}) => {
 
     const date = new Date(item.rental_date);
     const formattedDate = date.toGMTString().replace(' GMT', '');
     const [customer, setCustomer] = useState(); 
     const [isLoading, setIsLoading] = useState(true);
 
-    const getInfo = () => {
-       
+    const getInfo = (e) => {
         getCustomerById(item.customer_id)
             .then(response => {
               setCustomer(response)
@@ -41,6 +40,10 @@ const Rental = ({key, item, abrirDesplegable, onShow, funcionActivar  }) => {
                 <p className='rental-date'>{formattedDate}</p>
                 <p className='rental-first-name'>{item.first_name}</p>
                 <p className='rental-last-name'>{item.last_name}</p>
+                <div className='rental-div-delete'>
+                    <button className='rental-button' onClick={deleteRental}>Borrar</button>
+                </div>
+                
             </div>      
             {abrirDesplegable && !isLoading && (
                 <div className='rental-desplegable'>
