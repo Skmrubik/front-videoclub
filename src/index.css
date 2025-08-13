@@ -141,3 +141,15 @@ input {
   color: #595959 !important;
 }
 
+.selectCountry {
+  font-size: 14px;
+  border-color: #ccc;
+  color: #595959 !important;
+  text-align: left;
+}
+
+.selectCountry:focus {
+  font-size: 14px;
+  border-color: #ccc;
+  
+}
