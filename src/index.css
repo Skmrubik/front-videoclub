@@ -14,9 +14,9 @@ body {
   margin-bottom: 5px;
   padding: 5px;
   border-radius: 5px;
-  border: 1px solid #ff944d;
   font-weight: 600;
   text-align: center;
+  box-shadow: 1px 1px 0px 1px #ff944d;
 }
 
 .title {
@@ -45,6 +45,7 @@ ul {
 }
 .navbar{
   width: 140px;
+  text-align: center;
 }
 
 .menu {
@@ -161,10 +162,10 @@ input {
   margin: 5px;
   padding: 5px;
   border-radius: 5px;
-  border: 1px solid #ff944d;
   padding: 10px;
   display: flex;
   flex-direction: column;
+  box-shadow: 1px 1px 0px 1px #ff944d;
 }
 
 .rental-item-priority-values {
@@ -174,6 +175,7 @@ input {
 .rental-title {
   width: 25%;
   text-align: left;
+  font-weight: 500;
 }
 .rental-date {
   width: 25%;
@@ -239,4 +241,6 @@ input {
   border-radius: 5px;
   cursor: pointer;
   font-size: 14px;
+  font-weight: 600;
+  box-shadow: 1px 1px 0px 1px #990000;
 }

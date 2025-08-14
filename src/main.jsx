@@ -1,5 +1,5 @@
 import { createRoot } from 'react-dom/client'
-import { NavLink, BrowserRouter, Routes, Route} from "react-router-dom";
+import { NavLink, BrowserRouter, Routes, Route } from "react-router-dom";
 import './index.css'
 import Films from './views/Films.jsx'
 import Customers from './views/Customers.jsx';
@@ -10,38 +10,38 @@ createRoot(document.getElementById('root')).render(
     <div className="menu" >
       <div className="navbar" >
         <NavLink to="/films"
-                    style={({ isActive }) => ({
-                        color: isActive? "black": "#595959",
-                        fontWeight: "bold",
-                        fontFamily: "Segoe UI",
-                        fontSize: "20px",
-                        textDecoration: "none",
-                        marginRight: "15px",
-                    })}>Peliculas
+          style={({ isActive }) => ({
+            color: isActive ? "black" : "#595959",
+            fontWeight: "bold",
+            fontFamily: "Segoe UI",
+            fontSize: "20px",
+            textDecoration: "none",
+            marginRight: "15px",
+          })}>Peliculas
         </NavLink>
       </div>
       <div className="navbar" >
         <NavLink to="/rentals"
-                  style={({ isActive }) => ({
-                      color: isActive? "black": "#595959",
-                      fontWeight: "bold",
-                      fontFamily: "Segoe UI",
-                      fontSize: "20px",
-                      textDecoration: "none",
-                      marginRight: "15px",
-                  })}>Alquileres
+          style={({ isActive }) => ({
+            color: isActive ? "black" : "#595959",
+            fontWeight: "bold",
+            fontFamily: "Segoe UI",
+            fontSize: "20px",
+            textDecoration: "none",
+            marginRight: "15px",
+          })}>Alquileres
         </NavLink>
       </div>
       <div className="navbar" >
         <NavLink to="/customers"
-                  style={({ isActive }) => ({
-                      color: isActive? "black": "#595959",
-                      fontWeight: "bold",
-                      fontFamily: "Segoe UI",
-                      fontSize: "20px",
-                      textDecoration: "none",
-                      marginRight: "15px",
-                  })}>Clientes
+          style={({ isActive }) => ({
+            color: isActive ? "black" : "#595959",
+            fontWeight: "bold",
+            fontFamily: "Segoe UI",
+            fontSize: "20px",
+            textDecoration: "none",
+            marginRight: "15px",
+          })}>Clientes
         </NavLink>
       </div>
     </div>

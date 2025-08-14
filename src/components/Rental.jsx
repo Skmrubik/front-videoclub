@@ -1,30 +1,29 @@
 import React, { useState, useEffect } from 'react'
-import {getCustomerById} from '../services/Customers.js';
-import { set } from 'react-hook-form';
-const Rental = ({key, item, abrirDesplegable, onShow, funcionActivar, deleteRental}) => {
+import { getCustomerById } from '../services/Customers.js';
+const Rental = ({ key, item, abrirDesplegable, onShow, funcionActivar, deleteRental }) => {
 
     const date = new Date(item.rental_date);
     const formattedDate = date.toGMTString().replace(' GMT', '');
-    const [customer, setCustomer] = useState(); 
+    const [customer, setCustomer] = useState();
     const [isLoading, setIsLoading] = useState(true);
 
     const getInfo = (e) => {
         getCustomerById(item.customer_id)
             .then(response => {
-              setCustomer(response)
-              setIsLoading(false);
-              console.log("Cliente obtenido:", response);
-               onShow();
+                setCustomer(response)
+                setIsLoading(false);
+                console.log("Cliente obtenido:", response);
+                onShow();
                 if (abrirDesplegable) {
                     funcionActivar(null);
                 }
             })
             .catch((err) => {
-              console.log(err.message);
+                console.log(err.message);
             });
     }
 
-     const propertyCustomer = (descripcion, valor) => {
+    const propertyCustomer = (descripcion, valor) => {
         return (
             <div className='propiedad'>
                 <p className='label-property-customer'>{descripcion} </p>
@@ -33,8 +32,8 @@ const Rental = ({key, item, abrirDesplegable, onShow, funcionActivar, deleteRent
         );
     }
 
-    return(
-        <div className='rental-item' onClick={getInfo} key={key}> 
+    return (
+        <div className='rental-item' onClick={getInfo} key={key}>
             <div className='rental-item-priority-values'>
                 <p className='rental-title'>{item.title}</p>
                 <p className='rental-date'>{formattedDate}</p>
@@ -43,8 +42,8 @@ const Rental = ({key, item, abrirDesplegable, onShow, funcionActivar, deleteRent
                 <div className='rental-div-delete'>
                     <button className='rental-button' onClick={deleteRental}>Borrar</button>
                 </div>
-                
-            </div>      
+
+            </div>
             {abrirDesplegable && !isLoading && (
                 <div className='rental-desplegable'>
                     {propertyCustomer("Email:", customer.email)}

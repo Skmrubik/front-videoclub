@@ -7,10 +7,10 @@ import FilmBox from '../components/FilmBox.jsx';
 import FormControl from '@mui/material/FormControl';
 import NativeSelect from '@mui/material/NativeSelect';
 import Select from 'react-select';
-import {categories} from '../constant/categories.js'; // Assuming categories are stored in a JSON file
+import { categories } from '../constant/categories.js'; // Assuming categories are stored in a JSON file
 
 const styleBox = { width: 200, height: 70, marginTop: '5px', marginLeft: '20px', boxShadow: '2px 2px 2px 1px rgba(0, 0, 0, 0.2)', borderRadius: '5px', padding: '10px' }
-const styleTitleFilter = { fontSize: 18, textAlign: 'center'}
+const styleTitleFilter = { fontSize: 18, textAlign: 'center' }
 
 function Films() {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -26,7 +26,7 @@ function Films() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    getFilmsBetweenLength(value[0], value[1], category, selectedOption.value === undefined? "": selectedOption.value, page)
+    getFilmsBetweenLength(value[0], value[1], category, selectedOption.value === undefined ? "" : selectedOption.value, page)
       .then(items => {
         setPosts(items["listFilmPage"])
         setPage(items["currentPage"])
@@ -63,8 +63,8 @@ function Films() {
 
   if (isLoading) {
     return <div>Cargando... 🌀</div>;
-  } 
-  
+  }
+
   return (
     <>
       <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: '20px' }}>
@@ -99,7 +99,7 @@ function Films() {
             </NativeSelect>
           </FormControl>
         </Box>
-        <Box sx={{...styleBox, ...{fontFamily: 'Segoe UI'}}}>
+        <Box sx={{ ...styleBox, ...{ fontFamily: 'Segoe UI' } }}>
           <p style={styleTitleFilter}>Actor</p>
           <Select
             style={{ color: 'black' }}
@@ -124,12 +124,12 @@ function Films() {
           );
         })}
       </ul>
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-        <button onClick={() => setPage(page-1)} disabled={page <= 1} style={{ fontFamily: 'Segoe UI', margin: '10px', padding: '5px 10px', backgroundColor: '#f0f0f0', border: '1px solid #ccc', borderRadius: '5px' }}>Anterior</button>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <button onClick={() => setPage(page - 1)} disabled={page <= 1} style={{ fontFamily: 'Segoe UI', margin: '10px', padding: '5px 10px', backgroundColor: '#f0f0f0', border: '1px solid #ccc', borderRadius: '5px' }}>Anterior</button>
         <span style={{ margin: '10px', fontSize: '16px', fontFamily: 'Segoe UI' }}>Página {showPage} de {totalPages}</span>
-        <button onClick={() => setPage(page+1)} disabled={page == totalPages} style={{ fontFamily: 'Segoe UI', margin: '10px', padding: '5px 10px', backgroundColor: '#f0f0f0', border: '1px solid #ccc', borderRadius: '5px' }}>Siguiente</button>
+        <button onClick={() => setPage(page + 1)} disabled={page == totalPages} style={{ fontFamily: 'Segoe UI', margin: '10px', padding: '5px 10px', backgroundColor: '#f0f0f0', border: '1px solid #ccc', borderRadius: '5px' }}>Siguiente</button>
       </div>
-      
+
     </>
   )
 }

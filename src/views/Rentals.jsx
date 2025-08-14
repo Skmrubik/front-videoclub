@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, use } from 'react'
 import { getRentalsPending, getRentalsPendingByCustomer, deleteRentalById } from '../services/Rentals.js';
 import Rental from '../components/Rental.jsx';
-import {getCustomersFormatted} from '../services/Customers.js';
+import { getCustomersFormatted } from '../services/Customers.js';
 import Select from 'react-select';
 import Box from '@mui/material/Box';
 
@@ -18,75 +18,67 @@ function Rentals() {
     const styleTitleFilter = { fontSize: 18, textAlign: 'center' }
 
     useEffect(() => {
-        // Fetch rentals data from an API or service
-        getRentalsPending()
-        .then(data => {
-            setRentals(data);
-            setIsLoading(false);
-        })
-        .catch(error => {
-            console.error('Error fetching rentals:', error);
-            setIsLoading(false);
-        });
-        getCustomersFormatted()
-        .then(data => {
-            setCustomers(data);
-        })
-        .catch(error => {
-            console.error('Error fetching rentals:', error);
-        });
+        setLoadRentals(loadRentals => !loadRentals);
     }, []);
-    
-    useEffect(() => {
-        // Fetch rentals data from an API or service
-        getRentalsPendingByCustomer(selectedOption.value === undefined? "": selectedOption.value)
-        .then(data => {
-            setRentals(data);
-            setIsLoading(false);
-        })
-        .catch(error => {
-            console.error('Error fetching rentals:', error);
-            setIsLoading(false);
-        });
-    }, [selectedOption]);
 
     useEffect(() => {
         // Fetch rentals data from an API or service
         getRentalsPending()
-        .then(data => {
-            setRentals(data);
-            setIsLoading(false);
-        })
-        .catch(error => {
-            console.error('Error fetching rentals:', error);
-            setIsLoading(false);
-        });
+            .then(data => {
+                setRentals(data);
+                setIsLoading(false);
+            })
+            .catch(error => {
+                console.error('Error fetching rentals:', error);
+                setIsLoading(false);
+            });
+        getCustomersFormatted()
+            .then(data => {
+                setCustomers(data);
+            })
+            .catch(error => {
+                console.error('Error fetching rentals:', error);
+            });
     }, [loadRentals]);
 
-    const deleteRental = (e,rentalId) => {
-        window.confirm("¿Seguro que quieres borrar este alquiler?"); 
-        deleteRentalById(rentalId)
-            .then(() => {
-                console.log("Alquiler borrado correctamente");
-                setLoadRentals(loadRentals => !loadRentals);
+    useEffect(() => {
+        // Fetch rentals data from an API or service
+        getRentalsPendingByCustomer(selectedOption.value === undefined ? "" : selectedOption.value)
+            .then(data => {
+                setRentals(data);
+                setIsLoading(false);
             })
-            .catch((err) => {
-                console.log("Fallo al borrar", err.message);
-            });  
-        e.stopPropagation(); 
+            .catch(error => {
+                console.error('Error fetching rentals:', error);
+                setIsLoading(false);
+            });
+    }, [selectedOption]);
+
+    const deleteRental = (e, rentalId) => {
+        if (window.confirm("¿Seguro que quieres borrar este alquiler?")) {
+            deleteRentalById(rentalId)
+                .then(() => {
+                    console.log("Alquiler borrado correctamente");
+                    setLoadRentals(loadRentals => !loadRentals);
+                })
+                .catch((err) => {
+                    console.log("Fallo al borrar", err.message);
+                });
+        }
+        e.stopPropagation();
     }
 
     const onMenuOpen = () => setIsMenuOpen(true);
     const onMenuClose = () => setIsMenuOpen(false);
 
     if (isLoading) {
-        return <div>Loading...</div>;
+        return (<div>Loading...</div>);
     }
-    
+
     return (
         <>
-            <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: '20px' }}>
-                <Box sx={{...styleBox, ...{fontFamily: 'Segoe UI'}}}>
+            <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: '20px', marginBottom: '20px' }}>
+                <Box sx={{ ...styleBox, ...{ fontFamily: 'Segoe UI' } }}>
                     <p style={styleTitleFilter}>Filtro cliente</p>
                     <Select
                         style={{ color: 'black' }}
@@ -111,8 +103,8 @@ function Rentals() {
                 </div>
                 {rentals.length === 0 && <p style={{ textAlign: 'center', fontFamily: 'Segoe UI' }}>No se encontraron películas alquiladas</p>}
                 {rentals.length !== 0 && rentals.map(rental => (
-                    <Rental key={rental.rental_id} item={rental} abrirDesplegable={activeIndex === rental.rental_id} 
-                            onShow={() => setActiveIndex(rental.rental_id)} funcionActivar={setActiveIndex} deleteRental={(e) => deleteRental(e,rental.rental_id)}/>
+                    <Rental key={rental.rental_id} item={rental} abrirDesplegable={activeIndex === rental.rental_id}
+                        onShow={() => setActiveIndex(rental.rental_id)} funcionActivar={setActiveIndex} deleteRental={(e) => deleteRental(e, rental.rental_id)} />
                 ))}
             </div>
         </>

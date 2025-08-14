@@ -20,26 +20,26 @@ function Customers() {
   const onSubmit = (data) => {
     if (Object.keys(errors).length === 0) {
       const customer = {
-                firstName: data.name,
-                lastName: data.apellido,
-                email: data.email,
-                addressId: {
-                    address: data.direccion1,
-                    address2: data.direccion2,
-                    district: data.distrito,
-                    cityId: {
-                        city_id: data.ciudad
-                    },
-                    postalCode: data.codigoPostal,
-                    phone: data.telefono,
-                }
-            }
+        firstName: data.name,
+        lastName: data.apellido,
+        email: data.email,
+        addressId: {
+          address: data.direccion1,
+          address2: data.direccion2,
+          district: data.distrito,
+          cityId: {
+            city_id: data.ciudad
+          },
+          postalCode: data.codigoPostal,
+          phone: data.telefono,
+        }
+      }
       insertCustomer(customer)
         .then(() => {
           console.log("Cliente insertado");
           alert("Cliente insertado correctamente");
           // Reset form or redirect as needed 
-          reset();  
+          reset();
           setSelectedOption("");
           setCities([]);
         })
@@ -61,15 +61,15 @@ function Customers() {
 
   useEffect(() => {
     if (selectedOption != undefined && selectedOption.value != undefined) {
-      getCitiesByCountry(selectedOption.value) 
-      .then(items => {
-        setCities(items)
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
+      getCitiesByCountry(selectedOption.value)
+        .then(items => {
+          setCities(items)
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
     }
-    
+
   }, [selectedOption]);
 
 
@@ -100,64 +100,68 @@ function Customers() {
   */
   return (
     <div className="customers">
-      
+
       <form onSubmit={handleSubmit(onSubmit)}>
         <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
-          <p style={{marginTop: 40, fontSize: 15}}>Introduce los datos de un nuevo cliente</p>
+          <p style={{ marginTop: 40, fontSize: 15 }}>Introduce los datos de un nuevo cliente</p>
         </div>
-        
+
         <div className="form-container">
-          <div className="form-input"> 
+          <div className="form-input">
             <p className="form-label">Nombre*</p>
-            <input 
-              {...register('name', { required: 'Nombre es obligatorio', pattern: {
+            <input
+              {...register('name', {
+                required: 'Nombre es obligatorio', pattern: {
                   value: /^[a-zA-Z\s]{0,20}$/,
                   message: 'Nombre debe tener como máximo 20 caracteres'
-                } })} 
+                }
+              })}
             />
           </div>
-          <div className="form-input"> 
+          <div className="form-input">
             <p className="form-label">Apellidos*</p>
-            <input 
-              {...register('apellido', { required: 'Apellidos es obligatorio', pattern: {
+            <input
+              {...register('apellido', {
+                required: 'Apellidos es obligatorio', pattern: {
                   value: /^[a-zA-Z\s]{5,50}$/,
                   message: 'Apellido debe tener entre 5 y 50 caracteres'
-                } })} 
+                }
+              })}
             />
           </div>
-          <div className="form-input"> 
+          <div className="form-input">
             <p className="form-label">Email*</p>
-            <input 
-              {...register('email', { 
+            <input
+              {...register('email', {
                 required: 'Email obligatorio',
                 pattern: {
                   value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
                   message: 'Email inválido'
-                } 
-              })} 
+                }
+              })}
             />
           </div>
-          <div className="form-input"> 
+          <div className="form-input">
             <p className="form-label">Dirección 1*</p>
-            <input 
-              {...register('direccion1', { required: 'Dirección 1 es obligatoria' })} 
+            <input
+              {...register('direccion1', { required: 'Dirección 1 es obligatoria' })}
             />
           </div>
-          <div className="form-input"> 
+          <div className="form-input">
             <p className="form-label">Dirección 2</p>
-            <input 
-              {...register('direccion2')} 
+            <input
+              {...register('direccion2')}
             />
           </div>
-          <div className="form-input"> 
+          <div className="form-input">
             <p className="form-label">Pais</p>
-            <div style={{ padding: '0px 10px 10px 10px', fontFamily: 'Segoe UI'}}>
+            <div style={{ padding: '0px 10px 10px 10px', fontFamily: 'Segoe UI' }}>
               <Select
                 style={{ color: 'black', padding: 10 }}
                 className="selectCountry"
                 aria-labelledby="Segoe UI"
                 inputId="Segoe UI"
-                placeholder="Selecciona una opción..." 
+                placeholder="Selecciona una opción..."
                 name="Segoe UI"
                 onMenuOpen={onMenuOpen}
                 onMenuClose={onMenuClose}
@@ -168,57 +172,62 @@ function Customers() {
               />
             </div>
           </div>
-          <div className="form-input"> 
+          <div className="form-input">
             <p className="form-label">Ciudad*</p>
-            <select className="selectCity" disabled={selectedOption==""? true: false} 
-            {...register("ciudad", { required: 'Ciudad es obligatoria' })}>
+            <select className="selectCity" disabled={selectedOption == "" ? true : false}
+              {...register("ciudad", { required: 'Ciudad es obligatoria' })}>
               <option value="" disabled selected>Selecciona un país</option>
               {cities.map((city) => (
                 <option key={city.value} value={city.value}>{city.label}</option>
               ))}
             </select>
           </div>
-          <div className="form-input"> 
+          <div className="form-input">
             <p className="form-label">Distrito*</p>
-            <input 
-              {...register('distrito', { required: 'Distrito es obligatorio' })} 
+            <input
+              {...register('distrito', { required: 'Distrito es obligatorio' })}
             />
           </div>
           <div className="form-input">
             <p className="form-label">Código postal*</p>
-            <input 
-              {...register('codigoPostal', { required: 'Código postal es obligatorio', pattern: {
-                value: /^\d{5}$/,
-                message: "El código postal debe tener 5 dígitos",
-              },})} 
+            <input
+              {...register('codigoPostal', {
+                required: 'Código postal es obligatorio', pattern: {
+                  value: /^\d{5}$/,
+                  message: "El código postal debe tener 5 dígitos",
+                },
+              })}
             />
           </div>
           <div className="form-input">
             <p className="form-label">Teléfono*</p>
-            <input 
-              {...register('telefono', { required: 'Teléfono es obligatorio', pattern: {
-                value: /^\d{9}$/,
-                message: "El teléfono debe tener 9 dígitos",
-              },})} 
+            <input
+              {...register('telefono', {
+                required: 'Teléfono es obligatorio', pattern: {
+                  value: /^\d{9}$/,
+                  message: "El teléfono debe tener 9 dígitos",
+                },
+              })}
             />
           </div>
         </div>
-        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px', flexDirection: 'column', alignItems: 'center'
-         }}> 
+        <div style={{
+          display: 'flex', justifyContent: 'center', marginTop: '20px', flexDirection: 'column', alignItems: 'center'
+        }}>
           {errors.name && <p className="error">{errors.name.message}</p>}
           {errors.apellido && <p className="error">{errors.apellido.message}</p>}
           {errors.email && <p className="error">{errors.email.message}</p>}
           {errors.direccion1 && <p className="error">{errors.direccion1.message}</p>}
           {errors.direccion2 && <p className="error">{errors.direccion2.message}</p>}
           {errors.ciudad && <p className="error">{errors.ciudad.message}</p>}
-          {errors.distrito && <p className="error">{errors.distrito.message}</p>}        
+          {errors.distrito && <p className="error">{errors.distrito.message}</p>}
           {errors.codigoPostal && <p className="error">{errors.codigoPostal.message}</p>}
           {errors.telefono && <p className="error">{errors.telefono.message}</p>}
         </div>
         <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
           <button type="submit" className="boton-guardar-cliente">Guardar</button>
         </div>
-        
+
       </form>
     </div>
   );
