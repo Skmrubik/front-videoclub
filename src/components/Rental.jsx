@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { getCustomerById } from '../services/Customers.js';
+import DeleteIcon from '@mui/icons-material/Delete';
 const Rental = ({ key, item, abrirDesplegable, onShow, funcionActivar, deleteRental }) => {
 
     const date = new Date(item.rental_date);
@@ -40,7 +41,7 @@ const Rental = ({ key, item, abrirDesplegable, onShow, funcionActivar, deleteRen
                 <p className='rental-first-name'>{item.first_name}</p>
                 <p className='rental-last-name'>{item.last_name}</p>
                 <div className='rental-div-delete'>
-                    <button className='rental-button' onClick={deleteRental}>Borrar</button>
+                    <button className='rental-button' onClick={deleteRental}><DeleteIcon fontSize='small'/></button>
                 </div>
 
             </div>

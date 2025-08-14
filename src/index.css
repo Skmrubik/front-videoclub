@@ -63,8 +63,13 @@ ul {
   padding: 5px;
   border-radius: 5px;
   margin-top: 5px;
+  display: flex;
+  flex-direction: row;
 }
 
+.css-1hakw0l {
+  margin-left: 0px !important;
+}
 
 p {
   margin: 0;

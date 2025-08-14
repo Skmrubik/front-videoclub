@@ -43,15 +43,17 @@ function Rentals() {
 
     useEffect(() => {
         // Fetch rentals data from an API or service
-        getRentalsPendingByCustomer(selectedOption.value === undefined ? "" : selectedOption.value)
-            .then(data => {
-                setRentals(data);
-                setIsLoading(false);
-            })
-            .catch(error => {
-                console.error('Error fetching rentals:', error);
-                setIsLoading(false);
-            });
+        if (selectedOption.value !== undefined) {
+            getRentalsPendingByCustomer(selectedOption.value === undefined ? "" : selectedOption.value)
+                .then(data => {
+                    setRentals(data);
+                    setIsLoading(false);
+                })
+                .catch(error => {
+                    console.error('Error fetching rentals:', error);
+                    setIsLoading(false);
+                });
+        }
     }, [selectedOption]);
 
     const deleteRental = (e, rentalId) => {

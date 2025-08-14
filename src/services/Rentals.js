@@ -17,3 +17,15 @@ export function deleteRentalById(rentalId) {
         })
         .then((response) => response)
 }
+
+export function insertRental(customerId, inventoryId) {
+    return fetch('http://localhost:8080/insertRental?inventoryId='+inventoryId+'&customerId='+customerId,
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        }
+    )
+    .then((response) => response.json())
+}
