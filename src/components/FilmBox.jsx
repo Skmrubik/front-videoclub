@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { getActorsOfFilm } from '../services/Films'
+import { getActorsOfFilm, getAvailableFilms } from '../services/Films'
 import { insertCustomer } from '../services/Customers'
 
 function FilmBox({ value, item, abrirDesplegable, onShow, funcionActivar }) {
 
   const [actors, setActors] = useState([]);
+  const [availableFilms, setAvailableFilms] = useState(0);
 
   const getInfo = () => {
     onShow();
@@ -18,13 +19,13 @@ function FilmBox({ value, item, abrirDesplegable, onShow, funcionActivar }) {
       .catch((err) => {
         console.log(err.message);
       });
-    insertCustomer()
-      .then(response => { 
-        console.log("Cliente insertado:", response);
+    getAvailableFilms(item.film_id.film_id)
+      .then(items => {
+        setAvailableFilms(items)
       })
-      .catch((err) => {  
-        console.log(err.message); 
-      });     
+      .catch((err) => {
+        console.log(err.message);
+      });    
   };
 
   const propertyFilm = (descripcion, valor) => {
@@ -47,6 +48,7 @@ function FilmBox({ value, item, abrirDesplegable, onShow, funcionActivar }) {
           {propertyFilm("Puntuación:", item.film_id.rentalRate)}
           {propertyFilm("Categoría:", item.categoryId.name)}
           {propertyFilm("Precio:", item.film_id.replacementCost + " €")}
+          {propertyFilm("Peliculas disponibles:", availableFilms)}
         </div>
       )}
     </div>

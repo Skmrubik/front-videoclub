@@ -79,6 +79,7 @@ input {
   color: #595959 !important;
   height: 25px;
   width: 270px;
+  margin-left: 10px;
 }
 
 .customers{
@@ -171,19 +172,19 @@ input {
   flex-direction: row;
 }
 .rental-title {
-  width: 300px;
+  width: 25%;
   text-align: left;
 }
 .rental-date {
-  width: 250px;
+  width: 25%;
   text-align: left;
 }
 .rental-first-name {
-  width: 150px;
+  width: 15%;
   text-align: left;
 } 
 .rental-last-name {
-  width: 300px;
+  width: 25%;
   text-align: left;
 }
 
@@ -195,20 +196,19 @@ input {
 }
 
 .header-title {
-  width: 300px;
+  width: 25%;
   text-align: left;
-  margin-left: 5px;
 }
 .header-date {
-  width: 250px;
+  width: 25%;
   text-align: left;
 }
 .header-first-name {
-  width: 150px;
+  width: 15%;
   text-align: left;
 } 
 .header-last-name {
-  width: 300px;
+  width: 25%;
   text-align: left;
 }
 

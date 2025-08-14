@@ -18,3 +18,8 @@ export function getActorsOfFilm(idFilm) {
         .then((response) => response.json())
 }
 
+export function getAvailableFilms(idFilm) {
+    return fetch('http://localhost:8080/getAvailableFilms?filmId='+idFilm)
+        .then((response) => response.json())
+}
+

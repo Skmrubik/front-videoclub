@@ -203,7 +203,8 @@ function Customers() {
             />
           </div>
         </div>
-        <div> 
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px', flexDirection: 'column', alignItems: 'center'
+         }}> 
           {errors.name && <p className="error">{errors.name.message}</p>}
           {errors.apellido && <p className="error">{errors.apellido.message}</p>}
           {errors.email && <p className="error">{errors.email.message}</p>}
