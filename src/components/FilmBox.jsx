@@ -100,16 +100,14 @@ function FilmBox({ value, item, abrirDesplegable, onShow, funcionActivar }) {
             {propertyFilm("Peliculas disponibles:", availableFilms.length)}
             <button onClick={() => {
               if (selectedOption.value !== undefined) {
-                console.log("Alquiler de película a cliente:", selectedOption);
                 insertRental(selectedOption.value, availableFilms[0])
-                        .then(() => {
-                          console.log("Rental insertado");
-                          reset();
-                          setSelectedOption("");
-                        })
-                        .catch((err) => {
-                          console.log(err.message);
-                        });
+                  .then(() => {
+                    console.log("Rental insertado");
+                    setSelectedOption("");
+                  })
+                  .catch((err) => {
+                    console.log(err.message);
+                  });
               } else {
                 console.log("Por favor, selecciona un cliente.");
               }

@@ -3,8 +3,13 @@ export function getFirstNFilms(tam) {
         .then((response) => response.json())
 }
 
-export function getFilmsBetweenLength(min, max, category, actorId, page) {
-    return fetch('http://localhost:8080/listFilmsFilter?minDuration='+min+'&maxDuration='+max+'&category='+category+'&actorId='+actorId+'&page='+page)
+export function getFilmsFormatted() {
+    return fetch('http://localhost:8080/listFilmsFormatted')
+        .then((response) => response.json())
+}
+
+export function getFilmsBetweenLength(min, max, category, actorId, filmId, page) {
+    return fetch('http://localhost:8080/listFilmsFilter?minDuration='+min+'&maxDuration='+max+'&category='+category+'&actorId='+actorId+'&filmId='+filmId+'&page='+page)
         .then((response) => response.json())
 }
 

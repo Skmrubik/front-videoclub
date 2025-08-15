@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { getFilmsBetweenLength } from '../services/Films.js'
+import { getFilmsBetweenLength, getFilmsFormatted } from '../services/Films.js'
 import { getActors } from '../services/Actors.js'
 import Slider from '@mui/material/Slider'
 import Box from '@mui/material/Box';
@@ -19,14 +19,18 @@ function Films() {
   const [category, setCategory] = useState(0);
   const [actors, setActors] = useState([]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState("");
+  const [isMenuOpenFilms, setIsMenuOpenFilms] = useState(false);
+  const [selectedOption, setSelectedOption] = useState(0);
+  const [selectedOptionFilms, setSelectedOptionFilms] = useState(0);
   const [page, setPage] = useState(1);
   const [showPage, setShowPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const [filmsSelect, setFilmsSelect] = useState([]);
 
   useEffect(() => {
-    getFilmsBetweenLength(value[0], value[1], category, selectedOption.value === undefined ? "" : selectedOption.value, page)
+    getFilmsBetweenLength(value[0], value[1], category, selectedOption.value === undefined ? 0 : selectedOption.value, 
+      selectedOptionFilms.value === undefined ? 0 : selectedOptionFilms.value, page)
       .then(items => {
         setPosts(items["listFilmPage"])
         setPage(items["currentPage"])
@@ -37,13 +41,20 @@ function Films() {
       .catch((err) => {
         console.log(err.message);
       });
-  }, [value, category, selectedOption, page]
+  }, [value, category, selectedOption, page, selectedOptionFilms]
   );
 
   useEffect(() => {
     getActors()
       .then(items => {
         setActors(items)
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+    getFilmsFormatted()
+      .then(items => {
+        setFilmsSelect(items)
       })
       .catch((err) => {
         console.log(err.message);
@@ -60,6 +71,8 @@ function Films() {
 
   const onMenuOpen = () => setIsMenuOpen(true);
   const onMenuClose = () => setIsMenuOpen(false);
+  const onMenuOpenFilms = () => setIsMenuOpenFilms(true);
+  const onMenuCloseFilms = () => setIsMenuOpenFilms(false);
 
   if (isLoading) {
     return <div>Cargando... 🌀</div>;
@@ -67,7 +80,22 @@ function Films() {
 
   return (
     <>
-      <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: '20px' }}>
+      <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around', marginTop: '20px', marginRight: '20px' }}>
+        <Box sx={{ ...styleBox, ...{ fontFamily: 'Segoe UI' } }}>
+          <p style={styleTitleFilter}>Películas</p>
+          <Select
+            style={{ color: 'black' }}
+            aria-labelledby="Segoe UI"
+            inputId="Segoe UI"
+            name="Segoe UI"
+            onMenuOpen={onMenuOpenFilms}
+            onMenuClose={onMenuCloseFilms}
+            defaultValue={0}
+            value={selectedOptionFilms}
+            onChange={setSelectedOptionFilms}
+            options={filmsSelect}
+          />
+        </Box>
         <Box sx={styleBox}>
           <p style={styleTitleFilter}>Duración</p>
           <Slider
