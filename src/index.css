@@ -6,10 +6,12 @@
 .cuadro {
   width: auto;
 }
+
 body {
   margin: 0;
   display: block;
 }
+
 .film {
   background-color:  #ffe6cc;
   margin-bottom: 5px;
@@ -31,30 +33,37 @@ body {
 }
 
 .propiedad {
-  display: flex;
-  flex-direction: row;
   justify-content: center;
   padding: 5px;
 }
+
 p {
   margin: 0px;
-  
   font-size: 15px !important;
 }
 
 ul {
   padding: 5px 5px 5px 5px;
 }
+
 .navbar{
   width: 140px;
   text-align: center;
 }
 
-.menu {
+.flex-row {
   display: flex;
   flex-direction: row;
-  align-items: center;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu {
   justify-content: center;
+  align-items: center;
   background-color: #ff944d;
   border-bottom: 1px solid #ccc;  
   padding-top: 10px;
@@ -65,8 +74,6 @@ ul {
   background-color: #ffcc99;
   padding: 5px;
   border-radius: 0px 0px 5px 5px;
-  display: flex;
-  flex-direction: row;
 }
 
 .css-1hakw0l {
@@ -169,37 +176,32 @@ input {
   margin: 5px;
   padding: 5px;
   border-radius: 5px;
-  display: flex;
-  flex-direction: column;
   box-shadow: 1px 1px 0px 1px #ff944d;
   color: #662900 ;
 }
 
-.rental-item-priority-values {
-  display: flex;
-  flex-direction: row;
-}
 .rental-title {
   width: 25%;
   text-align: left;
   font-weight: 500;
 }
+
 .rental-date {
   width: 25%;
   text-align: left;
 }
+
 .rental-first-name {
   width: 15%;
   text-align: left;
 } 
+
 .rental-last-name {
   width: 25%;
   text-align: left;
 }
 
 .rental-headers {
-  display: flex;
-  flex-direction: row;
   font-weight: bold;
   padding: 10px 10px 0px 10px;
 }
@@ -222,9 +224,7 @@ input {
 }
 
 .rental-desplegable {
-  display: flex;
   background-color: #ffcc99;
-  flex-direction: row;
   border-radius: 0px 0px 5px 5px;
   margin-top: 5px;
   width: 100%;
@@ -232,10 +232,9 @@ input {
 
 .rental-customer-info{
   width: 50%;
-  display: flex;  
-  flex-direction: column;
   align-items: start;
 }
+
 .label-property-customer {
   font-weight: 500;
 }
@@ -260,8 +259,6 @@ input {
 }
 
 .films-list{
-  display: flex;
-  flex-direction: row;
   align-items: center; 
   justify-content: space-around; 
   margin-top: 20px; 
@@ -295,14 +292,10 @@ input {
 }
 
 .property-film-first {
-  display: flex;
-  flex-direction: column;
   justify-content: center;
   width: 100%;
 }
 .film-container {
-  display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: space-between;
   width: 100%;
@@ -320,14 +313,10 @@ input {
 
 .film-cost {
   width: 15%;
-  display: flex;
-  flex-direction: row;
   justify-content: end;
 }
 
 .info-film-container {
-  display: flex;
-  flex-direction: column;
   align-items: center;
   padding-right: 10px;
   justify-content: space-between;
@@ -335,21 +324,15 @@ input {
 }
 
 .film-last-properties {
-  display: flex;
-  flex-direction: row;
   width: 100%;
 }
 
 .film-last-properties-division {
-  display: flex;
-  flex-direction: column;
   align-items: center;
   width: 50%;
 }
 
 .rental-container {
-  display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: space-between;
   width: 25%;
@@ -370,10 +353,31 @@ input {
 }
 
 .container-filter-rent {
-  display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: center;
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+.errors-form-customer {
+  justify-content: center;
+  margin-top: 10px;
+  align-items: center;
+}
+
+.button-form-customer {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.info-customer {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.info-customer-text {
+  margin-top: 20px;
+  font-size: 15px;
 }

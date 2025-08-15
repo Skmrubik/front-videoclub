@@ -7,7 +7,7 @@ import Rentals from './views/Rentals.jsx'
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
-    <div className="menu" >
+    <div className="menu flex-row" >
       <div className="navbar" >
         <NavLink to="/films"
           style={({ isActive }) => ({

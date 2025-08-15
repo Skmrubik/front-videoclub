@@ -79,7 +79,7 @@ function Rentals() {
 
     return (
         <>
-            <div className='container-filter-rent'>
+            <div className='container-filter-rent flex-row'>
                 <Box className='box-style'>
                     <p className='style-title-filter'>Filtro cliente</p>
                     <Select
@@ -97,7 +97,7 @@ function Rentals() {
                 </Box>
             </div>
             <div>
-                <div className='rental-headers'>
+                <div className='rental-headers flex-row'>
                     <p className='header-title'>Película</p>
                     <p className='header-date'>Fecha de Alquiler</p>
                     <p className='header-first-name'>Nombre</p>

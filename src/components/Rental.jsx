@@ -31,7 +31,7 @@ const Rental = ({ key, item, abrirDesplegable, onShow, funcionActivar, deleteRen
 
     const propertyCustomer = (descripcion, valor) => {
         return (
-            <div className='propiedad'>
+            <div className='propiedad flex-row'>
                 <p className='label-property-customer'>{descripcion} </p>
                 <p className='propiedad-valor'>{valor}</p>
             </div>
@@ -39,8 +39,8 @@ const Rental = ({ key, item, abrirDesplegable, onShow, funcionActivar, deleteRen
     }
 
     return (
-        <div className='rental-item' onClick={getInfo}>
-            <div className='rental-item-priority-values'>
+        <div className='rental-item flex-column' onClick={getInfo}>
+            <div className='flex-row'>
                 <p className='rental-title'>{item.title}</p>
                 <p className='rental-date' style={{color: diffInHours > diffHoursMax? 'red': '#662900'}}>{formattedDate}</p>
                 <p className='rental-first-name'>{item.first_name}</p>
@@ -51,14 +51,14 @@ const Rental = ({ key, item, abrirDesplegable, onShow, funcionActivar, deleteRen
 
             </div>
             {abrirDesplegable && !isLoading && (
-                <div className='rental-desplegable'>
-                    <div className='rental-customer-info'>
+                <div className='rental-desplegable flex-row'>
+                    <div className='rental-customer-info flex-column'>
                          {propertyCustomer("Email:", customer.email)}
                         {propertyCustomer("Dirección:", customer.addressId.address)}
                         {propertyCustomer("Código Postal:", customer.addressId.postalCode)}
                         {propertyCustomer("Distrito:", customer.addressId.district)}
                     </div>
-                    <div className='rental-customer-info'>
+                    <div className='rental-customer-info flex-column'>
                         {propertyCustomer("Ciudad:", customer.addressId.cityId.city)}
                         {propertyCustomer("País:", customer.addressId.cityId.countryId.country)}
                         {propertyCustomer("Teléfono:", customer.addressId.phone)}

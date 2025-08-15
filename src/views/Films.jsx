@@ -44,7 +44,7 @@ function Films() {
     getFilms(true)
   }, [page]
   );
-  
+
   const getFilms = (changePage) => {
     const pageVar = changePage ? page: 1;
     getFilmsBetweenLength(value[0], value[1], category, selectedOption.value === undefined ? 0 : selectedOption.value,
@@ -97,7 +97,7 @@ function Films() {
 
   return (
     <>
-      <div className='films-list'>
+      <div className='films-list flex-row'>
         <Box  className='box-style'>
           <p className='style-title-filter'>Películas</p>
           <Select

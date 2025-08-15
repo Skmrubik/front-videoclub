@@ -45,7 +45,7 @@ function FilmBox({ value, item, abrirDesplegable, onShow, funcionActivar }) {
 
   const propertyFilm = (descripcion, valor) => {
     return (
-      <div className='propiedad'>
+      <div className='propiedad flex-row'>
         <p>{descripcion} </p>
         <p className='propiedad-valor'>{valor}</p>
       </div>
@@ -54,7 +54,7 @@ function FilmBox({ value, item, abrirDesplegable, onShow, funcionActivar }) {
 
   const propertyFilmFirst = (descripcion, valor) => {
     return (
-      <div  className='propiedad property-film-first'>
+      <div  className='propiedad flex-row property-film-first flex-column'>
         <p>{descripcion} </p>
         <p className='propiedad-valor'>{valor}</p>
       </div>
@@ -75,33 +75,33 @@ function FilmBox({ value, item, abrirDesplegable, onShow, funcionActivar }) {
   
   return (
     <div className='film' onClick={getInfo}>
-      <div className='film-container'>
+      <div className='film-container flex-row'>
         <div className='film-category'>
           <p>{item.categoryId.name.toUpperCase()}</p>
         </div>
         <p className='title' key={value}>{item.film_id.title.toUpperCase()} </p>
-        <div className='film-cost'>
+        <div className='film-cost flex-row'>
           <p>{item.film_id.replacementCost + " €"}</p>
         </div>
       </div>
       
       {abrirDesplegable && (
-        <div className='desplegable'>
-          <div className='info-film-container'>
+        <div className='desplegable flex-row'>
+          <div className='info-film-container flex-column'>
             {propertyFilmFirst("Descripción", item.film_id.description)}
             {propertyFilmFirst("Actores", actors.map((actor, index) => { return (actor.firstName + " " + actor.lastName + (index != actors.length - 1 ? ", " : "")) }))}
-            <div className='film-last-properties'>
-              <div className='film-last-properties-division'>
+            <div className='film-last-properties flex-row'>
+              <div className='film-last-properties-division flex-column'>
                 {propertyFilm("Duración:", item.film_id.length + " min")}
               </div>
-              <div className='film-last-properties-division'>
+              <div className='film-last-properties-division flex-column'>
                 {propertyFilm("Puntuación:", item.film_id.rentalRate)}
               </div>
             </div>
             
             
           </div>
-          <div className='rental-container'>
+          <div className='rental-container flex-column'>
             <Box className='box-style background-white'>
                 <p className='style-title-filter'>Seleccionar cliente</p>
                 <div onClick={handleSelectClick}>
