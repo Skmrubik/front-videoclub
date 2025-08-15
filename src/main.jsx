@@ -11,36 +11,39 @@ createRoot(document.getElementById('root')).render(
       <div className="navbar" >
         <NavLink to="/films"
           style={({ isActive }) => ({
-            color: isActive ? "black" : "#595959",
-            fontWeight: "bold",
+            color: "white",
+            fontWeight: isActive ? "bold" : "normal",
             fontFamily: "Segoe UI",
             fontSize: "20px",
             textDecoration: "none",
             marginRight: "15px",
-          })}>Peliculas
+            marginLeft: "15px",
+          })}>Películas
         </NavLink>
       </div>
       <div className="navbar" >
         <NavLink to="/rentals"
           style={({ isActive }) => ({
-            color: isActive ? "black" : "#595959",
-            fontWeight: "bold",
+            color:  "white",
+            fontWeight: isActive ? "bold" : "normal",
             fontFamily: "Segoe UI",
             fontSize: "20px",
             textDecoration: "none",
             marginRight: "15px",
+            marginLeft: "15px",
           })}>Alquileres
         </NavLink>
       </div>
       <div className="navbar" >
         <NavLink to="/customers"
           style={({ isActive }) => ({
-            color: isActive ? "black" : "#595959",
-            fontWeight: "bold",
+            color: "white",
+            fontWeight: isActive ? "bold" : "normal",
             fontFamily: "Segoe UI",
             fontSize: "20px",
             textDecoration: "none",
             marginRight: "15px",
+            marginLeft: "15px",
           })}>Clientes
         </NavLink>
       </div>

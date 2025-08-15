@@ -11,6 +11,7 @@ import { categories } from '../constant/categories.js'; // Assuming categories a
 
 const styleBox = { width: 200, height: 70, marginTop: '5px', boxShadow: '2px 2px 2px 1px rgba(0, 0, 0, 0.2)', borderRadius: '5px', padding: '10px' }
 const styleTitleFilter = { fontSize: 18, textAlign: 'center' }
+const styleButton = { fontFamily: 'Segoe UI', fontSize: 15, margin: '10px', padding: '5px 10px', boxShadow: '2px 2px 0px 1px #e65c00', backgroundColor: '#ff944d',border: 'none', borderRadius: '5px', color: 'white', cursor: 'pointer' }
 
 function Films() {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -29,7 +30,7 @@ function Films() {
   const [filmsSelect, setFilmsSelect] = useState([]);
 
   useEffect(() => {
-    getFilmsBetweenLength(value[0], value[1], category, selectedOption.value === undefined ? 0 : selectedOption.value, 
+    getFilmsBetweenLength(value[0], value[1], category, selectedOption.value === undefined ? 0 : selectedOption.value,
       selectedOptionFilms.value === undefined ? 0 : selectedOptionFilms.value, page)
       .then(items => {
         setPosts(items["listFilmPage"])
@@ -153,9 +154,9 @@ function Films() {
         })}
       </ul>
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-        <button onClick={() => setPage(page - 1)} disabled={page <= 1} style={{ fontFamily: 'Segoe UI', margin: '10px', padding: '5px 10px', backgroundColor: '#f0f0f0', border: '1px solid #ccc', borderRadius: '5px' }}>Anterior</button>
+        <button onClick={() => setPage(page - 1)} disabled={page <= 1} style={styleButton}>Anterior</button>
         <span style={{ margin: '10px', fontSize: '16px', fontFamily: 'Segoe UI' }}>Página {showPage} de {totalPages}</span>
-        <button onClick={() => setPage(page + 1)} disabled={page == totalPages} style={{ fontFamily: 'Segoe UI', margin: '10px', padding: '5px 10px', backgroundColor: '#f0f0f0', border: '1px solid #ccc', borderRadius: '5px' }}>Siguiente</button>
+        <button onClick={() => setPage(page + 1)} disabled={page == totalPages} style={styleButton}>Siguiente</button>
       </div>
 
     </>

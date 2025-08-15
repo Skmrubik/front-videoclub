@@ -13,6 +13,7 @@ body {
   background-color:  #ffe6cc;
   margin-bottom: 5px;
   padding: 5px;
+  color: #662900 ;
   border-radius: 5px;
   font-weight: 600;
   text-align: center;
@@ -21,12 +22,12 @@ body {
 
 .title {
   font-size: 1.2em;
-  color: black;
+  color: #662900;
 }
 
 .propiedad-valor {
   font-weight: 400;
-  color: #333;
+  color: #993d00 ;
 }
 
 .propiedad {
@@ -53,9 +54,10 @@ ul {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  background-color: #f0f0f0;
-  padding: 10px;
-  border-bottom: 1px solid #ccc;    
+  background-color: #ff944d;
+  border-bottom: 1px solid #ccc;  
+  padding-top: 10px;
+  padding-bottom: 10px; 
 }
 
 .desplegable {
@@ -171,6 +173,7 @@ input {
   display: flex;
   flex-direction: column;
   box-shadow: 1px 1px 0px 1px #ff944d;
+  color: #662900 ;
 }
 
 .rental-item-priority-values {

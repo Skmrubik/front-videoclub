@@ -7,6 +7,11 @@ const Rental = ({ key, item, abrirDesplegable, onShow, funcionActivar, deleteRen
     const formattedDate = date.toGMTString().replace(' GMT', '');
     const [customer, setCustomer] = useState();
     const [isLoading, setIsLoading] = useState(true);
+    const currentDate = new Date();
+    const diffInMS = Math.abs(currentDate - date);
+    const diffInHours = Math.ceil(diffInMS / (1000 * 60 * 60));
+    const diffInDays = Math.ceil(diffInMS / (1000 * 60 * 60 * 24));
+    const diffHoursMax = 10;
 
     const getInfo = (e) => {
         getCustomerById(item.customer_id)
@@ -37,7 +42,7 @@ const Rental = ({ key, item, abrirDesplegable, onShow, funcionActivar, deleteRen
         <div className='rental-item' onClick={getInfo}>
             <div className='rental-item-priority-values'>
                 <p className='rental-title'>{item.title}</p>
-                <p className='rental-date'>{formattedDate}</p>
+                <p className='rental-date' style={{color: diffInHours > diffHoursMax? 'red': '#662900'}}>{formattedDate}</p>
                 <p className='rental-first-name'>{item.first_name}</p>
                 <p className='rental-last-name'>{item.last_name}</p>
                 <div className='rental-div-delete'>
