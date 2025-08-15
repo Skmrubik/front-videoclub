@@ -1,5 +1,5 @@
 import React, { useState, useEffect, use } from 'react'
-import { getRentalsPending, getRentalsPendingByCustomer, deleteRentalById } from '../services/Rentals.js';
+import { getRentalsPending, getRentalsPendingByCustomer, returnRental } from '../services/Rentals.js';
 import Rental from '../components/Rental.jsx';
 import { getCustomersFormatted } from '../services/Customers.js';
 import Select from 'react-select';
@@ -57,16 +57,16 @@ function Rentals() {
     }, [selectedOption]);
 
     const deleteRental = (e, rentalId) => {
-        if (window.confirm("¿Seguro que quieres borrar este alquiler?")) {
-            deleteRentalById(rentalId)
+        //if (window.confirm("¿Seguro que quieres borrar este alquiler?")) {
+            returnRental(rentalId)
                 .then(() => {
-                    console.log("Alquiler borrado correctamente");
+                    console.log("Alquiler borrado correctamente", rentalId);
                     setLoadRentals(loadRentals => !loadRentals);
                 })
                 .catch((err) => {
                     console.log("Fallo al borrar", err.message);
                 });
-        }
+        //}
         e.stopPropagation();
     }
 

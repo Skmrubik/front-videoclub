@@ -9,7 +9,7 @@ import NativeSelect from '@mui/material/NativeSelect';
 import Select from 'react-select';
 import { categories } from '../constant/categories.js'; // Assuming categories are stored in a JSON file
 
-const styleBox = { width: 200, height: 70, marginTop: '5px', marginLeft: '20px', boxShadow: '2px 2px 2px 1px rgba(0, 0, 0, 0.2)', borderRadius: '5px', padding: '10px' }
+const styleBox = { width: 200, height: 70, marginTop: '5px', boxShadow: '2px 2px 2px 1px rgba(0, 0, 0, 0.2)', borderRadius: '5px', padding: '10px' }
 const styleTitleFilter = { fontSize: 18, textAlign: 'center' }
 
 function Films() {
@@ -80,7 +80,7 @@ function Films() {
 
   return (
     <>
-      <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around', marginTop: '20px', marginRight: '20px' }}>
+      <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around', marginTop: '20px', marginRight: '20px', marginLeft: '20px' }}>
         <Box sx={{ ...styleBox, ...{ fontFamily: 'Segoe UI' } }}>
           <p style={styleTitleFilter}>Películas</p>
           <Select

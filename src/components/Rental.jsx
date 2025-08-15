@@ -34,7 +34,7 @@ const Rental = ({ key, item, abrirDesplegable, onShow, funcionActivar, deleteRen
     }
 
     return (
-        <div className='rental-item' onClick={getInfo} key={key}>
+        <div className='rental-item' onClick={getInfo}>
             <div className='rental-item-priority-values'>
                 <p className='rental-title'>{item.title}</p>
                 <p className='rental-date'>{formattedDate}</p>

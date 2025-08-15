@@ -103,7 +103,7 @@ function Customers() {
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
-          <p style={{ marginTop: 40, fontSize: 15 }}>Introduce los datos de un nuevo cliente</p>
+          <p style={{ marginTop: 20, fontSize: 15 }}>Introduce los datos de un nuevo cliente</p>
         </div>
 
         <div className="form-container">
@@ -212,7 +212,7 @@ function Customers() {
           </div>
         </div>
         <div style={{
-          display: 'flex', justifyContent: 'center', marginTop: '20px', flexDirection: 'column', alignItems: 'center'
+          display: 'flex', justifyContent: 'center', marginTop: '10px', flexDirection: 'column', alignItems: 'center'
         }}>
           {errors.name && <p className="error">{errors.name.message}</p>}
           {errors.apellido && <p className="error">{errors.apellido.message}</p>}
@@ -224,7 +224,7 @@ function Customers() {
           {errors.codigoPostal && <p className="error">{errors.codigoPostal.message}</p>}
           {errors.telefono && <p className="error">{errors.telefono.message}</p>}
         </div>
-        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
           <button type="submit" className="boton-guardar-cliente">Guardar</button>
         </div>
 

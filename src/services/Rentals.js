@@ -29,3 +29,15 @@ export function insertRental(customerId, inventoryId) {
     )
     .then((response) => response.json())
 }
+
+export function returnRental(rentalId) {
+    return fetch('http://localhost:8080/returnRental?rentalId='+rentalId,
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        }
+    )
+    .then((response) => response.json())
+}

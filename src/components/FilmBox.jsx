@@ -12,7 +12,7 @@ function FilmBox({ value, item, abrirDesplegable, onShow, funcionActivar }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [customers, setCustomers] = useState([]);
 
-  const styleBox = { width: 200, height: 70, marginTop: '5px', marginLeft: '20px', boxShadow: '2px 2px 2px 1px rgba(0, 0, 0, 0.2)', borderRadius: '5px', padding: '10px' }
+  const styleBox = { width: 200, height: 70, marginTop: '5px', boxShadow: '2px 2px 2px 1px rgba(0, 0, 0, 0.2)', borderRadius: '5px', padding: '10px' }
   const styleTitleFilter = { fontSize: 18, textAlign: 'center' }
 
   const getInfo = () => {
@@ -52,6 +52,15 @@ function FilmBox({ value, item, abrirDesplegable, onShow, funcionActivar }) {
     );
   }
 
+  const propertyFilmFirst = (descripcion, valor) => {
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', width: '100%' }} className='propiedad'>
+        <p>{descripcion} </p>
+        <p className='propiedad-valor'>{valor}</p>
+      </div>
+    );
+  }
+
   const handleSelectClick = (e) => {
     e.stopPropagation();
     console.log("El clic en el Select fue detenido.");
@@ -70,12 +79,19 @@ function FilmBox({ value, item, abrirDesplegable, onShow, funcionActivar }) {
       {abrirDesplegable && (
         <div className='desplegable'>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'start', justifyContent: 'space-between', width: '75%' }}>
-            {propertyFilm("Descripción:", item.film_id.description)}
-            {propertyFilm("Actores:", actors.map((actor, index) => { return (actor.firstName + " " + actor.lastName + (index != actors.length - 1 ? ", " : "")) }))}
-            {propertyFilm("Duración:", item.film_id.length + " min")}
-            {propertyFilm("Puntuación:", item.film_id.rentalRate)}
-            {propertyFilm("Categoría:", item.categoryId.name)}
-            {propertyFilm("Precio:", item.film_id.replacementCost + " €")}
+            {propertyFilmFirst("Descripción", item.film_id.description)}
+            {propertyFilmFirst("Actores", actors.map((actor, index) => { return (actor.firstName + " " + actor.lastName + (index != actors.length - 1 ? ", " : "")) }))}
+            <div style={{ display: 'flex', flexDirection: 'row', width: '100%' }}>
+              <div style = {{ display: 'flex', flexDirection: 'column', alignItems: 'start',  width: '50%' }}>
+                {propertyFilm("Duración:", item.film_id.length + " min")}
+                {propertyFilm("Puntuación:", item.film_id.rentalRate)}
+              </div>
+              <div style = {{ display: 'flex', flexDirection: 'column', alignItems: 'start',  width: '50%' }}>
+                {propertyFilm("Categoría:", item.categoryId.name)}
+                {propertyFilm("Precio:", item.film_id.replacementCost + " €")}
+              </div>
+            </div>
+            
             
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between', width: '25%', backgroundColor: '#ff944d', padding: '30px', borderRadius: '5px' }}>
@@ -112,7 +128,7 @@ function FilmBox({ value, item, abrirDesplegable, onShow, funcionActivar }) {
                 console.log("Por favor, selecciona un cliente.");
               }
             }} style={{ fontFamily: 'Segoe UI', margin: '10px', fontSize: 20, padding: '10px 20px', color: 'white', backgroundColor: '#cc5200', border: 'none',  boxShadow: '2px 2px 0px 1px #803300', borderRadius: '5px' }}
-              disable={selectedOption.value === undefined}>Alquilar Película</button>  
+              disable={(selectedOption.value === undefined).toString()}>Alquilar Película</button>  
           </div>
         </div>
       )}

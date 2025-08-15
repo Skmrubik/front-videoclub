@@ -137,7 +137,6 @@ input {
 .error{
   font-size: 11px;
   color: red;
-  margin-top: 5px;
 }
 
 .selectCity {
@@ -147,6 +146,7 @@ input {
   padding: 5px;
   border: 1px solid #ccc;
   color: #595959 !important;
+  margin-left: 10px
 }
 
 .selectCountry {
