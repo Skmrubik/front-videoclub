@@ -52,14 +52,17 @@ const Rental = ({ key, item, abrirDesplegable, onShow, funcionActivar, deleteRen
             </div>
             {abrirDesplegable && !isLoading && (
                 <div className='rental-desplegable'>
-                    {propertyCustomer("Email:", customer.email)}
-                    {propertyCustomer("Dirección:", customer.addressId.address)}
-                    {propertyCustomer("Código Postal:", customer.addressId.postalCode)}
-                    {propertyCustomer("Distrito:", customer.addressId.district)}
-                    {propertyCustomer("Ciudad:", customer.addressId.cityId.city)}
-                    {propertyCustomer("País:", customer.addressId.cityId.countryId.country)}
-                    {propertyCustomer("Teléfono:", customer.addressId.phone)}
-
+                    <div className='rental-customer-info'>
+                         {propertyCustomer("Email:", customer.email)}
+                        {propertyCustomer("Dirección:", customer.addressId.address)}
+                        {propertyCustomer("Código Postal:", customer.addressId.postalCode)}
+                        {propertyCustomer("Distrito:", customer.addressId.district)}
+                    </div>
+                    <div className='rental-customer-info'>
+                        {propertyCustomer("Ciudad:", customer.addressId.cityId.city)}
+                        {propertyCustomer("País:", customer.addressId.cityId.countryId.country)}
+                        {propertyCustomer("Teléfono:", customer.addressId.phone)}
+                    </div>
                 </div>
             )}
         </div>

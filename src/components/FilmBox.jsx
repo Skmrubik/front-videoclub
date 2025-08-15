@@ -75,28 +75,35 @@ function FilmBox({ value, item, abrirDesplegable, onShow, funcionActivar }) {
   
   return (
     <div className='film' onClick={getInfo}>
-      <p className='title' key={value}>{item.film_id.title.toUpperCase()} </p>
+      <div style={{ display: 'flex', height: '100%', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
+        <div style={{backgroundColor: '#662900', height: '100%', borderRadius: '5px 0px 0px 5px',  width: '15%', color: 'white', textAlign: 'center'}}>
+          <p>{item.categoryId.name.toUpperCase()}</p>
+        </div>
+        <p className='title' key={value}>{item.film_id.title.toUpperCase()} </p>
+        <div style={{width: '15%', display: 'flex', flexDirection: 'row', justifyContent: 'end'}}>
+          <p>{item.film_id.replacementCost + " €"}</p>
+        </div>
+      </div>
+      
       {abrirDesplegable && (
         <div className='desplegable'>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'start', justifyContent: 'space-between', width: '75%' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'start', paddingRight: 10, justifyContent: 'space-between', width: '75%' }}>
             {propertyFilmFirst("Descripción", item.film_id.description)}
             {propertyFilmFirst("Actores", actors.map((actor, index) => { return (actor.firstName + " " + actor.lastName + (index != actors.length - 1 ? ", " : "")) }))}
             <div style={{ display: 'flex', flexDirection: 'row', width: '100%' }}>
-              <div style = {{ display: 'flex', flexDirection: 'column', alignItems: 'start',  width: '50%' }}>
+              <div style = {{ display: 'flex', flexDirection: 'column', alignItems: 'center',  width: '50%' }}>
                 {propertyFilm("Duración:", item.film_id.length + " min")}
-                {propertyFilm("Puntuación:", item.film_id.rentalRate)}
               </div>
-              <div style = {{ display: 'flex', flexDirection: 'column', alignItems: 'start',  width: '50%' }}>
-                {propertyFilm("Categoría:", item.categoryId.name)}
-                {propertyFilm("Precio:", item.film_id.replacementCost + " €")}
+              <div style = {{ display: 'flex', flexDirection: 'column', alignItems: 'center',  width: '50%' }}>
+                {propertyFilm("Puntuación:", item.film_id.rentalRate)}
               </div>
             </div>
             
             
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between', width: '25%', backgroundColor: '#ff944d', padding: '30px', borderRadius: '5px' }}>
-            <Box sx={{ ...styleBox, ...{ fontFamily: 'Segoe UI', backgroundColor: 'white', marginBottom: 2 } }}>
-                <p style={{...styleTitleFilter,...{color: 'black'}}}>Seleccionar cliente</p>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between', width: '25%', backgroundColor: '#ff944d', padding: '15px', borderRadius: '5px' }}>
+            <Box sx={{ ...styleBox, ...{ fontFamily: 'Segoe UI', backgroundColor: 'white' } }}>
+                <p style={{...styleTitleFilter,...{color: 'black', fontWeight: 400}}}>Seleccionar cliente</p>
                 <div onClick={handleSelectClick}>
                   <Select
                       style={{ color: 'black' }}
@@ -127,7 +134,7 @@ function FilmBox({ value, item, abrirDesplegable, onShow, funcionActivar }) {
               } else {
                 console.log("Por favor, selecciona un cliente.");
               }
-            }} style={{ fontFamily: 'Segoe UI', margin: '10px', fontSize: 20, padding: '10px 20px', color: 'white', backgroundColor: '#cc5200', border: 'none',  boxShadow: '2px 2px 0px 1px #803300', borderRadius: '5px' }}
+            }} style={{ fontFamily: 'Segoe UI', fontSize: 20, padding: '10px 20px', color: 'white', backgroundColor: '#cc5200', border: 'none',  boxShadow: '2px 2px 0px 1px #803300', borderRadius: '5px' }}
               disable={(selectedOption.value === undefined).toString()}>Alquilar Película</button>  
           </div>
         </div>
