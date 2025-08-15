@@ -98,10 +98,10 @@ function Rentals() {
             </div>
             <div>
                 <div className='rental-headers flex-row'>
-                    <p className='header-title'>Película</p>
-                    <p className='header-date'>Fecha de Alquiler</p>
-                    <p className='header-first-name'>Nombre</p>
-                    <p className='header-last-name'>Apellidos</p>
+                    <p className='rental-label-25'>Película</p>
+                    <p className='rental-label-25'>Fecha de Alquiler</p>
+                    <p className='rental-label-15'>Nombre</p>
+                    <p className='rental-label-25'>Apellidos</p>
                 </div>
                 {rentals.length === 0 && <p style={{ textAlign: 'center'}}>No se encontraron películas alquiladas</p>}
                 {rentals.length !== 0 && rentals.map(rental => (

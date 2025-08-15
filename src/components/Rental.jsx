@@ -32,7 +32,7 @@ const Rental = ({ key, item, abrirDesplegable, onShow, funcionActivar, deleteRen
     const propertyCustomer = (descripcion, valor) => {
         return (
             <div className='propiedad flex-row'>
-                <p className='label-property-customer'>{descripcion} </p>
+                <p className='font-500'>{descripcion} </p>
                 <p className='propiedad-valor'>{valor}</p>
             </div>
         );
@@ -41,10 +41,10 @@ const Rental = ({ key, item, abrirDesplegable, onShow, funcionActivar, deleteRen
     return (
         <div className='rental-item flex-column' onClick={getInfo}>
             <div className='flex-row'>
-                <p className='rental-title'>{item.title}</p>
-                <p className='rental-date' style={{color: diffInHours > diffHoursMax? 'red': '#662900'}}>{formattedDate}</p>
-                <p className='rental-first-name'>{item.first_name}</p>
-                <p className='rental-last-name'>{item.last_name}</p>
+                <p className='rental-label-25 font-500'>{item.title}</p>
+                <p className='rental-label-25' style={{color: diffInHours > diffHoursMax? 'red': '#662900'}}>{formattedDate}</p>
+                <p className='rental-label-15'>{item.first_name}</p>
+                <p className='rental-label-25'>{item.last_name}</p>
                 <div className='rental-div-delete'>
                     <button className='rental-button' onClick={deleteRental}><DeleteIcon fontSize='small'/></button>
                 </div>
