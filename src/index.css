@@ -1,5 +1,6 @@
 #root {
   padding: 0px !important;
+  font-family: "Segoe UI";
 }
 
 .cuadro {
@@ -37,7 +38,7 @@ body {
 }
 p {
   margin: 0px;
-  font-family: "Segoe UI";
+  
   font-size: 15px !important;
 }
 
@@ -256,4 +257,114 @@ input {
   font-size: 14px;
   font-weight: 600;
   box-shadow: 1px 1px 0px 1px #990000;
+}
+
+.films-list{
+  display: flex;
+  flex-direction: row;
+  align-items: center; 
+  justify-content: space-around; 
+  margin-top: 20px; 
+  margin-right: 20px; 
+  margin-left: 20px;
+}
+
+.box-style {
+  width: 200px;
+  height: 70px;
+  margin-top: 5px;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.background-white {
+  background-color: white;
+}
+
+.style-title-filter {
+  font-size: 18px;
+  text-align: center;
+  color: black;
+}
+
+.box-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.property-film-first {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+.film-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+}
+
+.film-category {
+  background-color: #662900;
+  height: 100%;
+  border-radius: 5px 0px 0px 5px;
+  width: 15%;
+  color: white;
+  text-align: center;
+}
+
+.film-cost {
+  width: 15%;
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+}
+
+.info-film-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-right: 10px;
+  justify-content: space-between;
+  width: 75%;
+}
+
+.film-last-properties {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.film-last-properties-division {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+}
+
+.rental-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 25%;
+  background-color: #ff944d;
+  padding: 15px;  
+  border-radius: 5px;
+}
+
+.button-rental {
+  font-size: 20px;
+  padding: 10px 20px;
+  color: white;
+  background-color: #cc5200;
+  border: none;
+  box-shadow: 2px 2px 0px 1px #803300;
+  border-radius: 5px;
+  cursor: pointer;
 }

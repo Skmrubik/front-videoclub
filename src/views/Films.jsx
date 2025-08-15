@@ -31,9 +31,9 @@ function Films() {
 
   const disabledFirstButtom = page <= 1;
   const disabledSecondButtom = page === totalPages;
-
-  const styleButtonFirst = { fontFamily: 'Segoe UI', fontSize: 15, margin: '10px', padding: '5px 10px', boxShadow: '2px 2px 0px 1px #e65c00', backgroundColor: disabledFirstButtom? '#ffc299':'#ff944d',border: 'none', borderRadius: '5px', color: 'white', cursor: disabledFirstButtom? 'default':'pointer' }
-  const styleButtonSecond = { fontFamily: 'Segoe UI', fontSize: 15, margin: '10px', padding: '5px 10px', boxShadow: '2px 2px 0px 1px #e65c00', backgroundColor: disabledSecondButtom? '#ffc299':'#ff944d',border: 'none', borderRadius: '5px', color: 'white', cursor: disabledSecondButtom? 'default':'pointer' }
+  const styleCommonButtonPagination = {fontSize: 15, margin: '10px', padding: '5px 10px', boxShadow: '2px 2px 0px 1px #e65c00',border: 'none', borderRadius: '5px', color: 'white'}
+  const styleButtonFirst = { ...styleCommonButtonPagination, ...{backgroundColor: disabledFirstButtom? '#ffc299':'#ff944d', cursor: disabledFirstButtom? 'default':'pointer'}}
+  const styleButtonSecond = { ...styleCommonButtonPagination, ...{backgroundColor: disabledSecondButtom? '#ffc299':'#ff944d', cursor: disabledSecondButtom? 'default':'pointer'}}
   
   useEffect(() => {
     getFilmsBetweenLength(value[0], value[1], category, selectedOption.value === undefined ? 0 : selectedOption.value,
@@ -87,9 +87,9 @@ function Films() {
 
   return (
     <>
-      <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around', marginTop: '20px', marginRight: '20px', marginLeft: '20px' }}>
-        <Box sx={{ ...styleBox, ...{ fontFamily: 'Segoe UI' } }}>
-          <p style={styleTitleFilter}>Películas</p>
+      <div className='films-list'>
+        <Box  className='box-style'>
+          <p className='style-title-filter'>Películas</p>
           <Select
             style={{ color: 'black' }}
             aria-labelledby="Segoe UI"
@@ -103,8 +103,8 @@ function Films() {
             options={filmsSelect}
           />
         </Box>
-        <Box sx={styleBox}>
-          <p style={styleTitleFilter}>Duración</p>
+        <Box className='box-style'>
+          <p className='style-title-filter'>Duración</p>
           <Slider
             getAriaLabel={() => 'Temperature range'}
             value={value}
@@ -116,9 +116,9 @@ function Films() {
             max={190}
           />
         </Box>
-        <Box sx={styleBox}>
+        <Box className='box-style'>
           <FormControl fullWidth color={"black"}>
-            <p style={styleTitleFilter}>
+            <p className='style-title-filter'>
               Categoría
             </p>
             <NativeSelect
@@ -134,8 +134,8 @@ function Films() {
             </NativeSelect>
           </FormControl>
         </Box>
-        <Box sx={{ ...styleBox, ...{ fontFamily: 'Segoe UI' } }}>
-          <p style={styleTitleFilter}>Actor</p>
+        <Box className='box-style'>
+          <p className='style-title-filter'>Actor</p>
           <Select
             style={{ color: 'black' }}
             aria-labelledby="Segoe UI"
@@ -152,14 +152,14 @@ function Films() {
       </div>
 
       <ul className='cuadro'>
-        {posts.length === 0 && <p style={{ textAlign: 'center', fontFamily: 'Segoe UI' }}>No se encontraron películas</p>}
+        {posts.length === 0 && <p style={{ textAlign: 'center' }}>No se encontraron películas</p>}
         {posts.length !== 0 && posts.map((item, value) => {
           return (
             <FilmBox key={value} item={item} abrirDesplegable={activeIndex === value} onShow={() => setActiveIndex(value)} funcionActivar={setActiveIndex} />
           );
         })}
       </ul>
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      <div className='box-pagination'>
         <button onClick={() => setPage(page - 1)} disabled={disabledFirstButtom} style={styleButtonFirst}>Anterior</button>
         <span style={{ margin: '10px', fontSize: '16px', fontFamily: 'Segoe UI' }}>Página {showPage} de {totalPages}</span>
         <button onClick={() => setPage(page + 1)} disabled={disabledSecondButtom} style={styleButtonSecond}>Siguiente</button>
