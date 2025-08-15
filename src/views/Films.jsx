@@ -36,8 +36,19 @@ function Films() {
   const styleButtonSecond = { ...styleCommonButtonPagination, ...{backgroundColor: disabledSecondButtom? '#ffc299':'#ff944d', cursor: disabledSecondButtom? 'default':'pointer'}}
   
   useEffect(() => {
+    getFilms(false)
+  }, [value, category, selectedOption, selectedOptionFilms]
+  );
+
+  useEffect(() => {
+    getFilms(true)
+  }, [page]
+  );
+  
+  const getFilms = (changePage) => {
+    const pageVar = changePage ? page: 1;
     getFilmsBetweenLength(value[0], value[1], category, selectedOption.value === undefined ? 0 : selectedOption.value,
-      selectedOptionFilms.value === undefined ? 0 : selectedOptionFilms.value, page)
+      selectedOptionFilms.value === undefined ? 0 : selectedOptionFilms.value, pageVar)
       .then(items => {
         setPosts(items["listFilmPage"])
         setPage(items["currentPage"])
@@ -48,8 +59,7 @@ function Films() {
       .catch((err) => {
         console.log(err.message);
       });
-  }, [value, category, selectedOption, page, selectedOptionFilms]
-  );
+  }
 
   useEffect(() => {
     getActors()
