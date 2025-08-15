@@ -368,3 +368,12 @@ input {
   border-radius: 5px;
   cursor: pointer;
 }
+
+.container-filter-rent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}

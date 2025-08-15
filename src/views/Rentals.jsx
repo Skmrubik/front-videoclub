@@ -57,7 +57,7 @@ function Rentals() {
     }, [selectedOption]);
 
     const deleteRental = (e, rentalId) => {
-        //if (window.confirm("¿Seguro que quieres borrar este alquiler?")) {
+        if (window.confirm("¿Seguro que quieres borrar este alquiler?")) {
             returnRental(rentalId)
                 .then(() => {
                     console.log("Alquiler borrado correctamente", rentalId);
@@ -66,7 +66,7 @@ function Rentals() {
                 .catch((err) => {
                     console.log("Fallo al borrar", err.message);
                 });
-        //}
+        }
         e.stopPropagation();
     }
 
@@ -79,9 +79,9 @@ function Rentals() {
 
     return (
         <>
-            <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: '20px', marginBottom: '20px' }}>
-                <Box sx={{ ...styleBox, ...{ fontFamily: 'Segoe UI' } }}>
-                    <p style={styleTitleFilter}>Filtro cliente</p>
+            <div className='container-filter-rent'>
+                <Box className='box-style'>
+                    <p className='style-title-filter'>Filtro cliente</p>
                     <Select
                         style={{ color: 'black' }}
                         aria-labelledby="Segoe UI"
@@ -103,7 +103,7 @@ function Rentals() {
                     <p className='header-first-name'>Nombre</p>
                     <p className='header-last-name'>Apellidos</p>
                 </div>
-                {rentals.length === 0 && <p style={{ textAlign: 'center', fontFamily: 'Segoe UI' }}>No se encontraron películas alquiladas</p>}
+                {rentals.length === 0 && <p style={{ textAlign: 'center'}}>No se encontraron películas alquiladas</p>}
                 {rentals.length !== 0 && rentals.map(rental => (
                     <Rental key={rental.rental_id} item={rental} abrirDesplegable={activeIndex === rental.rental_id}
                         onShow={() => setActiveIndex(rental.rental_id)} funcionActivar={setActiveIndex} deleteRental={(e) => deleteRental(e, rental.rental_id)} />
