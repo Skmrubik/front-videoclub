@@ -28,6 +28,9 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 # Copia los archivos estáticos compilados de la etapa 'builder' a Nginx
 COPY /dist /usr/share/nginx/html
 
+# Doy permisos en la carpeta de assets para poder acceder a los ficheros .js y .css
+RUN chmod -R 755 /usr/share/nginx/html
+
 # Expone el puerto 80 del contenedor, el puerto predeterminado de Nginx
 EXPOSE 5173
 
